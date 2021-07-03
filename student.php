@@ -13,11 +13,8 @@
 <div class="card">
   <div class="card-body">
   <form method="POST" >
-        <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Student Id :</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1"  name="s_id">
-        </div>
-        <div class="mb-3">
+        
+        </div>  <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Department :</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" name="dept">
         </div>
@@ -63,7 +60,7 @@
                <?php
                 if(isset($_POST['submit'])){
 
-                    $s_id= $_POST['s_id'];
+                    
                     $dept= $_POST['dept'];
                     $roll_no= $_POST['roll_no'];
                     $F_name=$_POST['F_name'];
@@ -75,7 +72,8 @@
                     $year=$_POST['year'];
                     $divison=$_POST['division'];
                     $batch=$_POST['batch'];
-                    $query = "INSERT INTO `student` VALUES ('$s_id','$dept','$roll_no','$F_name','$M_name','$L_name','$email','$password','$contact','$year','$divison','$batch', '0')";
+                    // $query = "INSERT INTO `student` VALUES ('$dept','$roll_no','$F_name','$M_name','$L_name','$email','$password','$contact','$year','$divison','$batch', '0')";
+                    $query ="INSERT INTO `student`(`dept`, `roll_no`, `F_name`, `M_name`, `L_name`, `email`, `password`, `contact`, `year`, `division`, `batch`, `active`) VALUES ('$dept','$roll_no','$F_name','$M_name','$L_name','$email','$password','$contact','$year','$division','$batch','$active')";
                     $res = mysqli_query($Connect, $query);
                     if(!$res){
                         echo("<script>alert('Error!! data not inserted into database')</script>");
@@ -84,6 +82,28 @@
                         echo("<script>alert('You have Sucessfully Registred!')</script>");
                         echo("<script>window.location = 'student.php'</script>");
                     }
+                    // $query = " SELECT * FROM `student` WHERE `email` = '$email' ";
+                    // $res = mysqli_query($Connect, $query);
+                    // $data = mysqli_fetch_assoc($res);
+                    // $sr_no = $data['sr_no'];
+                    $query="SELECT `sr_no` FROM `student` WHERE `email`='$email' ";
+                    $res=mysqli_query($Connect,$query);
+                    while($row=$res->fetch_assoc())
+                    {
+                      $sr_no="{$row['sr_no']}";
+                    }
+                    $sr_no=substr(str_repeat(0,6).$sr_no,-6);
+                    $s_id="DY{$sr_no}";
+                    $query="UPDATE `student` SET `s_id` = '$s_id' WHERE `student`.`email` = '$email'";
+                    $resu = mysqli_query($Connect, $query);
+                    if(!$resu){
+                        echo("<script>alert('Error!! data not inserted into database')</script>");
+                    }
+                    else{
+                        echo("<script>alert('You have Sucessfully Registred!')</script>");
+                        echo("<script>window.location = 'student.php'</script>");
+                    }
+
                 }
                 ?>
   </div>
