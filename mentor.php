@@ -68,6 +68,16 @@ session_start(); ?>
                         echo("<script>alert('You have Sucessfully Registred!')</script>");
                         echo("<script>window.location = 'mentor.php'</script>");
                     }
+                    $query="SELECT `sr_no` FROM `mentor` WHERE `email`='$email' ";
+                    $res=mysqli_query($Connect,$query);
+                    while($row=$res->fetch_assoc())
+                    {
+                      $sr_no="{$row['sr_no']}";
+                    }
+                    $sr_no=substr(str_repeat(0,6).$sr_no,-6);
+                    $s_id="DY{$sr_no}";
+                    $query="UPDATE `student` SET `m_id` = '$m_id' WHERE `mentor`.`email` = '$email'";
+                    $resu = mysqli_query($Connect, $query);
                 }
 
             ?>

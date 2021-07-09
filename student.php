@@ -1,5 +1,5 @@
 
-<?php include('./Connect.php'); session_start();?>
+<?php include('./Connect.php');?>
 <html>
 <head>
 <title>Main</title>
@@ -14,7 +14,7 @@
   <div class="card-body">
   <form method="POST" >
         
-        </div>  <div class="mb-3">
+         <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Department :</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" name="dept">
         </div>
@@ -54,11 +54,11 @@
         <label for="exampleFormControlInput1" class="form-label">Batch :</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" name="batch">
         </div>
-        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        <button type="submit" class="btn btn-primary" name="student">Submit</button>
   </form>
                 <!----------------------- PHP  Backend ---------------------->
                <?php
-                if(isset($_POST['submit'])){
+                if(isset($_POST['student'])){
 
                     
                     $dept= $_POST['dept'];

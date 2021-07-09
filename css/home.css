@@ -1,0 +1,17 @@
+.welcome-banner {
+    width: 100%;
+    background-color: aqua;
+    padding: 1rem;
+}
+
+.welcome-banner > h1 {
+    font-size: 4rem;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 7;
+}
+
+.muted-text {
+    font-weight: 8;
+    font-size: 1.5rem;
+    padding-top: 0.8rem;
+}
