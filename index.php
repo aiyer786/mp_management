@@ -36,6 +36,7 @@
                 </div>
 
                 <select class="dropbtn" name="login_type">
+                <i class="fa fa-caret-down" , style="color: white;"></i>
                     <option style='background-color:#f5f5f5' style='color:white' value="student">Student</option>
                     <option style='background-color:#f5f5f5' style='color:white' value="mentor">Mentor</option>
                     <option style='background-color:#f5f5f5' style='color:white' value="hod">HOD</option>
