@@ -107,7 +107,7 @@
 
       <div class="border-t border-white p-4 font-medium mt-auto">
 
-        <a href="#"
+        <a href="logout.php"
           class="flex items-center h-10 px-3 hover:text-gray-100 hover:bg-red-100 hover:bg-opacity-25 rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline">
           <i class="fas fa-sign-out-alt"></i>
           <span class="ml-2 duration-300 ease-in-out"
@@ -143,14 +143,15 @@
         <!-- add-members page -->
 
         <div class='add-members-wrapper'>
-          <form style="max-width: 50%;" action="" method='POST'>
+          <form style="max-width: 50%;" action="create_grp.php" method='POST'>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Member's username" aria-label="Recipient's username"
+              <input type="text" class="form-control" placeholder="Member's email" aria-label="Recipient's username" name="member_email"
                 aria-describedby="button-addon2">
-              <button class="btn btn-primary text-white  btn-outline-secondary" type="button" id="button-addon2">Add
+              <button class="btn btn-primary text-white  btn-outline-secondary" type="submit" id="button-addon2" name="add_member">Add
                 Member</button>
             </div>
           </form>
+          
           <ol style="max-width : 50%" class="list-group list-group-numbered">
             <li class="list-group-item d-flex justify-content-between align-items-start">
               <div class="ms-2 me-auto">

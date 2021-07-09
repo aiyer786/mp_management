@@ -27,11 +27,11 @@
 
             <form class="login-form" method="POST" action="index_back.php">
                 <div class="form-control">
-                    <input type="text" placeholder="Email" name="email">
+                    <input type="text" placeholder="Email" name="email" required>
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="form-control">
-                    <input type="password" placeholder="Password" name="password">
+                    <input type="password" placeholder="Password" name="password" required>
                     <i class="fas fa-lock"></i>
                 </div>
 

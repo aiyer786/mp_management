@@ -11,17 +11,19 @@
         // $co_or = $_POST['co_or'];
 
         if ($login_type=='student') {
-            echo'I am ';
             $query = " SELECT * FROM `student` WHERE `email` = '$email' ";
             $res = mysqli_query($Connect, $query);
             $data = mysqli_fetch_assoc($res);
             if (strcmp($data['password'], $password)==0) {
                 $_SESSION['email']=$data['email'];
-                $_SESSION['password']  =  $data['password'];                
-                echo $data['F_name']. $data['M_name'].  $data['L_name'];
+                $_SESSION['password']  =  $data['password'];   
+                $s_id=$data['s_id']; 
+                $_SESSION['s_id']  = $data['s_id'];          
+                echo("<script>window.location = 'home.php?s_id=$s_id'</script>");
             } 
             else {
-                echo'wrong password';
+               echo("<script>alert('Wrong Email or Password!!')</script>");
+               echo("<script>window.location = 'index.php'</script>");
             }
         }
         
