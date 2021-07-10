@@ -69,7 +69,7 @@
             :class="isSidebarExpanded ? 'opacity-100' : 'opacity-0'">Home</span>
         </a>
 
-        <a href="#"
+        <a href="create_grp.php"
           class="flex items-center h-10 px-3 text-white hover:bg-red-100 hover:bg-opacity-25 rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline">
           <svg viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 flex-shrink-0">
             <path
@@ -80,13 +80,13 @@
             Group</span>
         </a>
 
-        <a href="#"
+        <!-- <a href="#"
           class="flex items-center h-10 px-3 text-white hover:bg-red-100 hover:bg-opacity-25 rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline">
           <i style="padding-left: 4px;" class="fas fa-user-plus"></i>
 
           <span class="ml-2 duration-300 ease-in-out" :class="isSidebarExpanded ? 'opacity-100' : 'opacity-0'">Add
             Members</span>
-        </a>
+        </a> -->
 
         <a href="#"
           class="flex items-center h-10 px-3 text-white hover:bg-red-100 hover:bg-opacity-25 rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline">
@@ -134,14 +134,14 @@
       <main class="flex-1 p-6">
         <!-- welcome-banner page -->
 
-        <!-- <div class='welcome-banner' >
+        <div class='welcome-banner' >
             <h1>Welcome User!</h1>
             <p class= "muted-text">Manage your projects seamlessly</p>
             <p >If you are a group leader, you may begin by clicking on create group option.</p>
-          </div> -->
+          </div>
 
         <!-- add-members page -->
-
+<!-- 
         <div class='add-members-wrapper'>
           <form style="max-width: 50%;" action="create_grp.php" method='POST'>
             <div class="input-group mb-3">
@@ -184,7 +184,7 @@
 
             </li>
           </ol>
-        </div>
+        </div> -->
 
         <!-- add-topic page -->
 
