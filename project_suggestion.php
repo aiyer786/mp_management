@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="./css/suggest.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <title>Project submission</title>
+    <title>Project suggestion</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
   Submitted by Lisa Wagner
   ****************************************
 -->
-
+    
     <div id="contact-form">
         <div>
             <h1>Nice to Meet You!</h1>
@@ -47,6 +47,7 @@
         </form>
 
     </div>
+    <img id = "image" src="https://image.freepik.com/free-vector/character-illustration-people-with-creative-ideas-icons_53876-59888.jpg" alt="Ideas change lives">
 </body>
 
 </html>

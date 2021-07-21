@@ -1,3 +1,4 @@
+<?php include('Connect.php');?>
 <html>
 <head>
 <title>Main</title>
@@ -29,11 +30,20 @@
   <div class="tab-pane fade show active" id="pills-student" role="tabpanel" aria-labelledby="pills-student-tab">
   <div class="card">
   <form method="POST" >
-        
-         <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Department :</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="dept">
-        </div>
+        Student Form
+        <br>
+        <br>
+  <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Department:</label>
+                        <select class="form-select" aria-label="Default select example" name="dept">
+                            <option selected>Select</option>
+                            <option value="CS">CS</option>
+                            <option value="IT">IT</option>
+                            <option value="EX">EX</option>
+                            <option value="ET">ET</option>
+                            <option value="IN">IN</option>
+                        </select>
+                    </div>
         <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Roll No :</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" name="roll_no">
@@ -59,16 +69,22 @@
         <input type="text" class="form-control" id="exampleFormControlInput1" name="contact">
         </div>
         <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Year :</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="year">
-        </div>
-        <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Division :</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="division">
-        </div>
+                        <label for="exampleFormControlInput1" class="form-label">Year:</label>
+                        <select class="form-select" aria-label="Default select example" name="year">
+                            <option selected>Select</option>
+                            <option value="SE">SE</option>
+                            <option value="TE">TE</option>
+                            <option value="BE">BE</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Division:</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="division" style="text-transform:uppercase">
+
+                    </div>
         <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Batch :</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="batch">
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="batch" style="text-transform:uppercase">
         </div>
         <button type="submit" class="btn btn-primary" name="student">Submit</button>
   </form>
@@ -86,7 +102,7 @@
                     $email=$_POST['email'];                                                                                          
                     $password= 'dypatil@123';
                     $year=$_POST['year'];
-                    $divison=$_POST['division'];
+                    $division=$_POST['division'];
                     $batch=$_POST['batch'];
                     // $query = "INSERT INTO `student` VALUES ('$dept','$roll_no','$F_name','$M_name','$L_name','$email','$password','$contact','$year','$divison','$batch', '0')";
                     $query ="INSERT INTO `student`(`dept`, `roll_no`, `F_name`, `M_name`, `L_name`, `email`, `password`, `contact`, `year`, `division`, `batch`, `active`) VALUES ('$dept','$roll_no','$F_name','$M_name','$L_name','$email','$password','$contact','$year','$division','$batch','$active')";
@@ -102,14 +118,16 @@
                     // $res = mysqli_query($Connect, $query);
                     // $data = mysqli_fetch_assoc($res);
                     // $sr_no = $data['sr_no'];
-                    $query="SELECT `sr_no` FROM `student` WHERE `email`='$email' ";
+                    $query="SELECT * FROM `student` WHERE `email`='$email' ";
                     $res=mysqli_query($Connect,$query);
                     while($row=$res->fetch_assoc())
                     {
                       $sr_no="{$row['sr_no']}";
+                      $dept="{$row['dept']}";
                     }
-                    $sr_no=substr(str_repeat(0,6).$sr_no,-6);
-                    $s_id="DY{$sr_no}";
+                    $sr_no=substr(str_repeat(0,4).$sr_no,-4);
+                    
+                    $s_id="DY{$dept}{$sr_no}";
                     $query="UPDATE `student` SET `s_id` = '$s_id' WHERE `student`.`email` = '$email'";
                     $resu = mysqli_query($Connect, $query);
                     if(!$resu){
@@ -117,7 +135,7 @@
                     }
                     else{
                         echo("<script>alert('You have Sucessfully Registred!')</script>");
-                        echo("<script>window.location = 'student.php'</script>");
+                        echo("<script>window.location = 'userdetails.php'</script>");
                     }
 
                 }
@@ -134,9 +152,15 @@
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="m_id">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Department :</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" name="dept">
-                </div>
+                        <label for="exampleFormControlInput1" class="form-label">Department:</label>
+                        <select class="form-select" aria-label="Default select example" name="dept">
+                            <option selected>CS</option>
+                            <option value="IT">IT</option>
+                            <option value="EX">EX</option>
+                            <option value="ET">ET</option>
+                            <option value="IN">IN</option>
+                        </select>
+                    </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">First Name :</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="F_name">
@@ -180,7 +204,7 @@
                     }
                     else{
                         echo("<script>alert('You have Sucessfully Registred!')</script>");
-                        echo("<script>window.location = 'mentor.php'</script>");
+                        echo("<script>window.location = 'userdetails.php'</script>");
                     }
                     $query="SELECT `sr_no` FROM `mentor` WHERE `email`='$email' ";
                     $res=mysqli_query($Connect,$query);
@@ -188,7 +212,7 @@
                     {
                       $sr_no="{$row['sr_no']}";
                     }
-                    $sr_no=substr(str_repeat(0,6).$sr_no,-6);
+                    $sr_no=substr(str_repeat(0,4).$sr_no,-4);
                     $s_id="DY{$sr_no}";
                     $query="UPDATE `student` SET `m_id` = '$m_id' WHERE `mentor`.`email` = '$email'";
                     $resu = mysqli_query($Connect, $query);
@@ -207,9 +231,15 @@
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="c_id">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Department :</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" name="dept">
-                </div>
+                        <label for="exampleFormControlInput1" class="form-label">Department:</label>
+                        <select class="form-select" aria-label="Default select example" name="dept">
+                            <option selected>CS</option>
+                            <option value="1">IT</option>
+                            <option value="2">EX</option>
+                            <option value="3">ET</option>
+                            <option value="4">IN</option>
+                        </select>
+                    </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">First Name :</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="F_name">
@@ -252,7 +282,7 @@
                     echo ("<script>alert('Error!! data not inserted into database')</script>");
                 } else {
                     echo ("<script>alert('You have Sucessfully Registred!')</script>");
-                    echo ("<script>window.location = 'co-or.php'</script>");
+                    echo ("<script>window.location = 'userdetails.php'</script>");
                 }
             }
 
@@ -267,9 +297,15 @@
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="h_id">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Department :</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" name="dept">
-                </div>
+                        <label for="exampleFormControlInput1" class="form-label">Department:</label>
+                        <select class="form-select" aria-label="Default select example" name="dept">
+                            <option selected>CS</option>
+                            <option value="1">IT</option>
+                            <option value="2">EX</option>
+                            <option value="3">ET</option>
+                            <option value="4">IN</option>
+                        </select>
+                    </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">First Name :</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="F_name">
@@ -312,7 +348,7 @@
                     echo ("<script>alert('Error!! data not inserted into database')</script>");
                 } else {
                     echo ("<script>alert('You have Sucessfully Registred!')</script>");
-                    echo ("<script>window.location = 'hod.php'</script>");
+                    echo ("<script>window.location = 'userdetails.php'</script>");
                 }
             }
 
