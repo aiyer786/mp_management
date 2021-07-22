@@ -55,7 +55,7 @@
                         <div class="dropdown">
                             
                             <label for="exampleFormControlInput1" class="form-label">Division:</label>
-                            <form method="POST">
+                            <form method="POST" action="div_select_back.php">
                             <input type="text" class="form-control" id="exampleFormControlInput1" name="division" style="text-transform:uppercase"> </input>
                             <button type="submit" class="btn btn-danger" name="div_submit">Submit</button>
                             </form>
@@ -64,15 +64,6 @@
                 </div>
             </section>
         </main>
-
-        <?php
-        
-             if(isset($_POST['div_submit'])){
-             }
-                 $division=$_POST['division'];
-               echo 'pressed it now';
-             
-        ?>
 
         <!--===== GSAP =====-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
