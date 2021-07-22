@@ -1,3 +1,6 @@
+<?php
+ include('Connect.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,34 +38,62 @@
         </ul>
     </nav> -->
     <!--Navbar End -->
+   
+   
+
+
+
     <div class="table-container">
         <!-- <h1 class="heading">DIV A</h1> -->
         <table class="table">
-            <thead>
+            <?php
+            $i=1;
+               $res3 = mysqli_query($Connect," SELECT * FROM `groups` WHERE `Leader` = '1' ");
+               while ($row3=mysqli_fetch_array($res3)) {
+                   $g_id=$row3['g_id']; ?>
+        <thead>
                  <th>S.No</th>
                  <th>Name</th>
                  <th>Batch</th>
                  <th>Roll No</th>
             </thead>
             <tbody>
+            <?php
+    
+    $n=1;
+                   $division=$_GET['division'];
+
+                 
+                   $res1 = mysqli_query($Connect, " SELECT * FROM `groups` WHERE `g_id` = '$g_id' ");
+                   while ($row1=mysqli_fetch_array($res1)) {
+                       $s_id=$row1['s_id'];
+                       echo $s_id;
+                       $res2 = mysqli_query($Connect, " SELECT * FROM `student` WHERE `division` = '$division' AND `s_id`='$s_id' ");
+                       while ($row2=mysqli_fetch_array($res2)) {
+                           $F_name = $row2['F_name'];
+                           $M_name = $row2['M_name'];
+                           $L_name = $row2['L_name'];
+                           $Full_name=" {$F_name} {$M_name} {$L_name} ";
+                           $roll_no = $row2['roll_no'];
+                           $batch = $row2['batch']; ?>
+                        
                   <tr>
-                        <td data-label="S.No">1</td>
-                        <td data-label="Name">XYZ</td>
-                        <td data-label="Batch">A1</td>
-                        <td data-label="Roll No">17CE1001</td>     
+                        <td data-label="S.No"><?php echo $n ?></td>
+                        <td data-label="Name"><?php echo $Full_name ?></td>
+                        <td data-label="Batch"><?php echo $batch ?></td>
+                        <td data-label="Roll No"><?php echo $roll_no ?></td>     
                   </tr>
-                  <tr>
-                        <td data-label="S.No">2</td>
-                        <td data-label="Name">ABC</td>
-                        <td data-label="Batch">A1</td>
-                        <td data-label="Roll No">17CE1002</td>      
-                  </tr>
-                  <tr>
-                        <td data-label="S.No">3</td>
-                        <td data-label="Name">PQR</td>
-                        <td data-label="Batch">A1</td>
-                        <td data-label="Roll No">17CE1003</td>      
-                  </tr>
+                <?php
+                 
+                    $n++;
+                           
+                       
+                           $i++;
+                       }
+                   }
+               } 
+                 ?>
+
             </tbody>
           </table>
           
