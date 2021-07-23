@@ -109,7 +109,7 @@
                     <th>Topic Name</th>
                     <th>Description</th>
                     <th>Action</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -119,12 +119,39 @@
                while ($row5=mysqli_fetch_array($res5)) {
                    $topic   =   $row5['topic'];
                    $description = $row5['description'];
+                   $topic_id = $row5['topic_id'];
                 ?>
                 <tr>
                     <td data-label="Topic Name"><?php echo $topic?></td>
                     <td data-label="Description"> <?php echo $description?> </td>
-                    <td data-label="Action"><a href="Action" class="btn">Approve</a></td>
-                    <td data-label="Action"><a href="Action" class="btn">Disapprove</a></td>
+                    <?php 
+                    
+                        $approved=$row5['approved'];
+                        echo $approved ;
+                    
+
+                        // aprroved  == null implies not selected
+                        // approved  == 1 implies project is approved
+                        // approved  == 2 implies project is rejected
+
+                        if ($approved == null) {
+                            $approved=0;
+                            ?>
+                            <td data-label="Action"><form method="post"><button  type="submit" name="<?php echo $topic_id ?>" href="Action" class="btn">Approve</button></form></td>
+                            <?php
+                            if(isset($_POST[$topic_id])){
+                                $res=mysqli_query($Connect,"UPDATE `project_suggestions` SET `approved`='1' WHERE `topic_id`='$topic_id' AND `g_id` = '$g_id'"); 
+                            }
+                        } elseif ($approved == '1') {
+                            echo'<td data-label="Action"><label>Accepted</label></td>';
+
+                        } else {
+                            echo'<td data-label="Action"><label>Rejected</label></td>';
+                        }
+                    
+                    ?>
+                    
+                    <!-- <td data-label="Action"><a href="Action" class="btn">Disapprove</a></td> -->
                 </tr>
                 
                 <?php
