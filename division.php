@@ -46,6 +46,7 @@
     <div class="table-container">
         
         <?php
+        $a=1;
             $i=1;
             $division=$_GET['division'];
             echo'<h1 class="heading">DIV '.$division.'</h1>';
@@ -114,11 +115,14 @@
             <tbody>
             <?php 
             $x=1;
-            while($x<4){
+            $res5 = mysqli_query($Connect," SELECT * FROM `project_suggestions` WHERE `g_id` = '$g_id'  ");
+               while ($row5=mysqli_fetch_array($res5)) {
+                   $topic   =   $row5['topic'];
+                   $description = $row5['description'];
                 ?>
                 <tr>
-                    <td data-label="Topic Name">Topic <?php echo $x?></td>
-                    <td data-label="Description">Topic <?php echo $x?> </td>
+                    <td data-label="Topic Name"><?php echo $topic?></td>
+                    <td data-label="Description"> <?php echo $description?> </td>
                     <td data-label="Action"><a href="Action" class="btn">Approve</a></td>
                     <td data-label="Action"><a href="Action" class="btn">Disapprove</a></td>
                 </tr>
@@ -126,7 +130,7 @@
                 <?php
                
                 $x++;
-                
+                $a++;
         }
            }
                ?>
