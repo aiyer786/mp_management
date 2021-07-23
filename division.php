@@ -44,14 +44,16 @@
 
 
     <div class="table-container">
-        <!-- <h1 class="heading">DIV A</h1> -->
-        <table class="table">
-            <?php
+        
+        <?php
             $i=1;
             $division=$_GET['division'];
+            echo'<h1 class="heading">DIV '.$division.'</h1>';
                $res3 = mysqli_query($Connect," SELECT * FROM `groups` WHERE `Leader` = '1' AND `division`='$division' ");
                while ($row3=mysqli_fetch_array($res3)) {
                    $g_id=$row3['g_id']; ?> 
+        <table class="table">
+
         <thead>
                  <th>S.No</th>
                  <th>Name</th>
@@ -70,7 +72,7 @@
                    while ($row1=mysqli_fetch_array($res1)) {
                        $s_id=$row1['s_id'];
                       
-                       $res2 = mysqli_query($Connect, " SELECT * FROM `student` WHERE  `division`='$division' AND `s_id`='$s_id' ");
+                       $res2 = mysqli_query($Connect, " SELECT * FROM `student` WHERE  `s_id`='$s_id' ");
                        while ($row2=mysqli_fetch_array($res2)) {
                            $F_name = $row2['F_name'];
                            $M_name = $row2['M_name'];
@@ -94,7 +96,7 @@
                            $i++;
                        }
                    }
-               }?>
+               ?>
 
             </tbody>
           </table>
@@ -110,28 +112,23 @@
                 </tr>
             </thead>
             <tbody>
+            <?php 
+            $x=1;
+            while($x<4){
+                ?>
                 <tr>
-                    <td data-label="Topic Name">Topic 1</td>
-                    <td data-label="Description">Topic 1</td>
+                    <td data-label="Topic Name">Topic <?php echo $x?></td>
+                    <td data-label="Description">Topic <?php echo $x?> </td>
                     <td data-label="Action"><a href="Action" class="btn">Approve</a></td>
                     <td data-label="Action"><a href="Action" class="btn">Disapprove</a></td>
                 </tr>
                 
                 <?php
-            //    ------------------- End the first Loop Here --------------------
+               
+                $x++;
+                
+        }
+           }
                ?>
-
-                <tr>
-                    <td data-label="Topic Name">Topic 2</td>
-                    <td data-label="Description">Topic 1</td>
-                    <td data-label="Action"><a href="Action" class="btn">Approve</a></td>
-                    <td data-label="Action"><a href="Action" class="btn">Disapprove</a></td>
-                </tr>
-                <tr>
-                    <td data-label="Topic Name">Topic 3</td>
-                    <td data-label="Description">Topic 1</td>
-                    <td data-label="Action"><a href="Action" class="btn">Approve</a></td>
-                    <td data-label="Action"><a href="Action" class="btn">Disapprove</a></td>
-                </tr>
             </tbody>
         </table>
