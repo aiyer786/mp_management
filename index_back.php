@@ -36,6 +36,8 @@
                 $_SESSION['email']=$data['email'];
                 $_SESSION['password']  =  $data['password'];                
                 echo $data['F_name'].$data['M_name'].$data['L_name'];
+               
+
             } 
             else {
                 echo'wrong password';
@@ -57,14 +59,13 @@
             }
         }
         elseif($login_type=='co_or'){
-            echo'I am ';
             $query = " SELECT * FROM `coordinator` WHERE `email` = '$email' ";
             $res = mysqli_query($Connect, $query);
             $data = mysqli_fetch_assoc($res);
             if (strcmp($data['password'], $password)==0) {
                 $_SESSION['email']=$data['email'];
                 $_SESSION['password']  =  $data['password'];                
-                echo $data['F_name'].$data['M_name'].$data['L_name'];
+                echo("<script>window.location = 'div_select.php'</script>");
             } 
             else {
                 echo'wrong password';

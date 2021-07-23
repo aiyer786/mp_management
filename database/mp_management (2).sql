@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 23, 2021 at 11:37 AM
+-- Generation Time: Jul 23, 2021 at 07:13 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -172,17 +172,18 @@ CREATE TABLE `project_suggestions` (
   `topic` varchar(100) NOT NULL,
   `description` varchar(1500) NOT NULL,
   `dept` varchar(10) NOT NULL,
-  `approved` tinyint(1) DEFAULT NULL
+  `approved` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `project_suggestions`
 --
 
-INSERT INTO `project_suggestions` (`sr_no`, `g_id`, `topic_id`, `topic`, `description`, `dept`, `approved`) VALUES
-(1, '1', '1', 'A gift suggestion for friend app', ' This app can look over the entire history of your friend’s social feed to suggest the best gift idea for your friend based upon the content they posted.', 'CS', 1),
-(2, '1', '2', 'Freelancing App:', 'A decentralized skill assessment and freelancing app that will let people assess their particular skills through a series of automated tests or problems.\r\n', 'CS', 1),
-(3, '1', '3', '\r\nReviews website\r\n', 'Dedicated to reviewing certain items or products. \r\nWe  can critique tech gadgets, movies, pet toys, or anything else that interests you. \r\nAlso how worthy is that product as per the price ie if its a worth to buy or not\r\nAlso real life review can be provided using images to check the quality and quantity of products.\r\n', 'CS', 1);
+INSERT INTO `project_suggestions` (`sr_no`, `g_id`, `topic_id`, `topic`, `description`, `dept`, `approved`, `status`) VALUES
+(2, '1', '2', 'Freelancing App:', 'A decentralized skill assessment and freelancing app that will let people assess their particular skills through a series of automated tests or problems.\r\n', 'CS', 0, 0),
+(3, '1', '3', '\r\nReviews website\r\n', 'Dedicated to reviewing certain items or products. \r\nWe  can critique tech gadgets, movies, pet toys, or anything else that interests you. \r\nAlso how worthy is that product as per the price ie if its a worth to buy or not\r\nAlso real life review can be provided using images to check the quality and quantity of products.\r\n', 'CS', 0, 0),
+(5, '1', '4', 'a gift planner', 'plan gifts for birthdays etc.', 'CS', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -295,7 +296,7 @@ ALTER TABLE `mentor`
 -- AUTO_INCREMENT for table `project_suggestions`
 --
 ALTER TABLE `project_suggestions`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `student`
