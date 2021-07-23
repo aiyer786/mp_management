@@ -109,7 +109,7 @@
                     <th>Topic Name</th>
                     <th>Description</th>
                     <th>Action</th>
-                    <!-- <th>Action</th> -->
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -127,21 +127,25 @@
                     <?php 
                     
                         $approved=$row5['approved'];
-                        echo $approved ;
+                       
                     
 
                         // aprroved  == null implies not selected
                         // approved  == 1 implies project is approved
                         // approved  == 2 implies project is rejected
 
-                        if ($approved == null) {
-                            $approved=0;
+                        if ($approved == 0) {
                             ?>
-                            <td data-label="Action"><form method="post"><button  type="submit" name="<?php echo $topic_id ?>" href="Action" class="btn">Approve</button></form></td>
+                            <td data-label="Action"><form method="post"><button  name="<?php echo $topic_id ?>" class="btn">Approve</button></form></td>
                             <?php
-                            if(isset($_POST[$topic_id])){
-                                $res=mysqli_query($Connect,"UPDATE `project_suggestions` SET `approved`='1' WHERE `topic_id`='$topic_id' AND `g_id` = '$g_id'"); 
+                            if(isset($_POST[$topic_id])) {
+                                $res6=mysqli_query($Connect, "UPDATE `project_suggestions` SET `approved`='1' ,`status`='1' WHERE `topic_id`='$topic_id' AND `g_id` = '$g_id'");   
                             }
+                            if($res6){
+                                $res7=mysqli_query($Connect, "UPDATE `project_suggestions` SET `approved`='2'  WHERE `status`='0' AND `g_id` = '$g_id'");   
+                            }
+
+                            
                         } elseif ($approved == '1') {
                             echo'<td data-label="Action"><label>Accepted</label></td>';
 
@@ -151,9 +155,15 @@
                     
                     ?>
                     
-                    <!-- <td data-label="Action"><a href="Action" class="btn">Disapprove</a></td> -->
+                    <td data-label="Action"><form method="post"><button  name="<?php echo "A$topic_id" ?>" class="btn">Reset</button></form>
+                    <?php
+                     if(isset($_POST["A$topic_id"])){
+
+                        $res9=mysqli_query($Connect, "UPDATE `project_suggestions` SET `approved`='0' ,`status`='0' WHERE  `g_id` = '$g_id'");
+                     }
+                    ?>
                 </tr>
-                
+                    </td>
                 <?php
                
                 $x++;
