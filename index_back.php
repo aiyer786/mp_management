@@ -18,8 +18,9 @@
                 $_SESSION['email']=$data['email'];
                 $_SESSION['password']  =  $data['password'];   
                 $s_id=$data['s_id']; 
-                $_SESSION['s_id']  = $data['s_id'];          
-                echo("<script>window.location = 'home.php?s_id=$s_id'</script>");
+                $_SESSION['s_id']  = $data['s_id'];
+                $_SESSION['division']   = $data['division']   ;    
+                echo("<script>window.location = 'student_home.php?s_id=$s_id'</script>");
             } 
             else {
                echo("<script>alert('Wrong Email or Password!!')</script>");

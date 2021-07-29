@@ -15,5 +15,9 @@ else{
     echo "doesn't match";
 }
 
-
+$query = " SELECT * FROM `student` WHERE `email` = '$email' ";
+            $res = mysqli_query($Connect, $query);
+            $data = mysqli_fetch_assoc($res);
+            echo $data['password'];
+            echo '123';
 ?>

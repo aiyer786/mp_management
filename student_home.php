@@ -1,3 +1,7 @@
+<?php 
+include('Connect.php');
+include('index_back.php')
+?>
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -27,7 +31,7 @@
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="css/student.css">
    </head>
 <body>
   <div class="sidebar">
@@ -35,7 +39,7 @@
       
       <!--<i class='bx bxl-c-plus-plus icon'></i>>-->
         <div class="logo_name">
-          <div class="imge"><img class="img" src="dylogo.png" alt="" srcset=""></div>
+          <div class="imge"><img class="img" src="images/dylogo.png" alt="" srcset=""></div>
           <div class="name">D Y PATIL</div>
         </div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -43,21 +47,21 @@
     <ul class="nav-list">
      
       <li>
-        <a href="index.html">
+        <a href="student_home.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Home</span>
         </a>
          <span class="tooltip">Home</span>
       </li>
       <li>
-       <a href="addmemb.html">
+       <a href="addmemb.php">
          <i class='bx bx-user-plus' ></i>
          <span class="links_name">Add Member</span>
        </a>
        <span class="tooltip">Add Member</span>
      </li>
      <li>
-       <a href="suggest.html">
+       <a href="project_suggest.php">
          <i class='bx bx-bulb' ></i>
          <span class="links_name">Suggest Topic</span>
        </a>
@@ -70,7 +74,13 @@
        </a>
        <span class="tooltip">Mentor</span>
        </li>
-     
+       <li>
+       <a href="logout.php">
+         <i class='bx bx-exit' ></i>
+         <span class="links_name">Logout</span>
+       </a>
+       <span class="tooltip">Logout</span>
+       </li>
     </ul>
   </div>
   <section class="home-section">
@@ -82,7 +92,7 @@
       </div>
         
   </section>
-  <script src="index.js"></script>
+  <script src="js/student.js"></script>
   
 </body>
 </html>

@@ -1,3 +1,8 @@
+<?php 
+include('Connect.php');
+include('index_back.php')
+?>
+
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -25,7 +30,7 @@
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="css/student.css">
    </head>
 <body>
   <div class="sidebar">
@@ -33,7 +38,7 @@
      
       <!--<i class='bx bxl-c-plus-plus icon'></i>>-->
       <div class="logo_name">
-        <div class="imge"><img class="img" src="dylogo.png" alt="" srcset=""></div>
+        <div class="imge"><img class="img" src="images/dylogo.png" alt="" srcset=""></div>
         <div class="name">D Y PATIL</div>
       </div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -41,21 +46,21 @@
     <ul class="nav-list">
      
       <li>
-        <a href="index.html">
+        <a href="student_home.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Home</span>
         </a>
          <span class="tooltip">Home</span>
       </li>
       <li>
-       <a href="addmemb.html">
+       <a href="addmemb.php">
          <i class='bx bx-user-plus' ></i>
          <span class="links_name">Add Member</span>
        </a>
        <span class="tooltip">Add Member</span>
      </li>
      <li>
-       <a href="suggest.html">
+       <a href="project_suggest.php">
          <i class='bx bx-bulb' ></i>
          <span class="links_name">Suggest Topic</span>
        </a>
@@ -68,6 +73,13 @@
        </a>
        <span class="tooltip">Mentor</span>
        </li>
+       <li>
+       <a href="logout.php">
+         <i class='bx bx-exit' ></i>
+         <span class="links_name">Logout</span>
+       </a>
+       <span class="tooltip">Logout</span>
+       </li>
      
     </ul>
   </div>
@@ -76,12 +88,51 @@
       <div class='add-members-wrapper'>
         <form style="max-width: 50%;" action="" method='POST'>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Member's username" aria-label="Recipient's username"
-              aria-describedby="button-addon2">
-            <button class="btn btn-primary text-white  btn-outline-secondary" type="button" id="button-addon2">Add
-              Member</button>
+            <input name="member" type="text" class="form-control" placeholder="Member's ID" aria-label="Recipient's username"
+              aria-describedby="button-addon2" required>
+            <button class="btn btn-primary text-white  btn-outline-secondary" name="addmemb" type="submit" id="button-addon2">AddMember</button>
           </div>
         </form>
+
+        <?php 
+
+        $res = mysqli_query($Connect,"SELECT * FROM `student` ");
+        while ($data = mysqli_fetch_array($res)) {
+            $s_id_check = $data['s_id'];
+            $division_check = $data['division'];
+            echo $s_id_check;
+        
+            if (isset($_POST['addmemb'])) {
+                // $leader = $_SESSION['s_id'];
+                $division= $_SESSION['division'];
+                // // echo $leader;
+                $g_id = 'AAA';
+                // // echo $g_id;
+                // $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id','$leader','$division','1') ") or die("leader error");
+              
+                $s_id=$_POST['member'];
+                if (strcmp($s_id_check, $s_id)==0 && strcmp($division_check, $division)==0) {
+                    echo 'correct';
+                    $res1 = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id','$s_id','$division','0' )") or die("member error");
+                } elseif (strcmp($division_check, $division)!=0) {
+                    echo'Other Division';
+                } elseif (strcmp($s_id_check, $s_id)!=0) {
+                    echo'Invalid';
+                }
+            }
+        }
+          $rowcount=mysqli_num_rows($res);
+          echo $rowcount;
+          while ($row=mysqli_fetch_array($res)) {
+
+              // echo $row['g_id'];
+          }
+
+        ?>
+
+
+
+
         <ol style="max-width : 50% ; margin-left: 5%;" class="list-group list-group-numbered">
           <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
@@ -91,9 +142,8 @@
             <div style="float: right; padding-top: 10px;">
               <button class="btn btn-sm btn-danger">Remove</button>
             </div>
-
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-start">
+           </li>
+          <!-- <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
               <div class="fw-bold">Nihal</div>
               <p class="muted-text" style="font-size: small;">nihal@gmail.com</p>
@@ -111,12 +161,11 @@
             <div style="float: right; padding-top: 10px;">
               <button class="btn btn-sm btn-danger">Remove</button>
             </div>
-
-          </li>
+          </li> -->
         </ol>
       </div>
         
   </section>
-  <script src="index.js"></script>
+  <script src="js/student.js"></script>
 </body>
 </html>
