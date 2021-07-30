@@ -116,7 +116,7 @@ include('index_back.php')
                     $g_id = uniqid();
                     $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id','$leader','$division','1') ") or die("leader error");
                     echo("<script>alert('Congrats !! You are now a group leader')</script>");
-
+                  
                 }
                 
                 $q13=mysqli_query($Connect, "SELECT * FROM groups WHERE s_id = '$leader' AND Leader = '1'")or die('Error99');
@@ -129,12 +129,12 @@ include('index_back.php')
                         // echo 'correct';
                         $res1 = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id_member','$s_id','$division','0' )") or die("member error");
                     }
-                    // elseif (strcmp($division_check, $division)!=0) {
+                // elseif (strcmp($division_check, $division)!=0) {
                 //     echo'Other Division';
                 // } elseif (strcmp($s_id_check, $s_id)!=0) {
                 //     echo'Invalid';
                 // }
-                }
+                }  
             }
         }
 
@@ -154,6 +154,7 @@ include('index_back.php')
             $q16 = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `g_id` = '$grp_id' ");
             while ($row1=mysqli_fetch_array($q16)) {
                 $member_id = $row1['s_id'];
+                $leader_check1 = $row1['Leader'];
                 $q17 = mysqli_query($Connect, "SELECT * FROM `student` WHERE `s_id` = '$member_id' ");
                 while ($row2=mysqli_fetch_array($q17)) {
                     $F_name = $row2['F_name'];
@@ -167,13 +168,32 @@ include('index_back.php')
               <p class="muted-text" style="font-size: small;"><?php echo $member_id?></p>
             </div>
             <div style="float: right; padding-top: 10px;">
-              <button class="btn btn-sm btn-danger">Remove</button>
+           <?php 
+             $leader_check =$row['Leader'];
+             if ($leader_check == '1') {
+              if($leader_check1 == '1'){
+               
+              }else{
+                  echo'<form method="post"><button class="btn btn-sm btn-danger" name="<?php echo $member_id?>">Remove</button></form>';
+                }
+             }
+             if($leader_check1 == '1'){
+              echo 'Leader';
+            }
+                 if (isset($_POST[$member_id])) {
+                     $remove = mysqli_query($Connect, "DELETE FROM `groups` WHERE `s_id`= '$member_id' ") or die("Error101");
+                 }
+             
+              ?>
             </div>
            </li>
            <?php
            $i++;
                 }
             }
+           
+             
+             
            ?>
           <!-- <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">

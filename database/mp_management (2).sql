@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 30, 2021 at 11:54 AM
+-- Generation Time: Jul 30, 2021 at 03:46 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -77,11 +77,13 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`sr_no`, `g_id`, `s_id`, `division`, `Leader`) VALUES
-(1, '1', 'DYCS0026', 'C', 1),
-(2, '1', 'DYCS0027', 'C', 0),
-(3, '1', 'DYCS0028', 'C', 0),
-(69, '6103c58ce8f38', 'DYCS0029', 'C', 1),
-(70, '1', 'DYCS0030', 'C', 0);
+(71, '1', 'DYCS0026', 'C', 1),
+(86, '1', 'DYCS0027', 'C', 0),
+(87, '1', 'DYCS0028', 'C', 0),
+(88, '610401a532d29', 'DYCS0029', 'C', 1),
+(89, '610401a532d29', 'DYCS0030', 'C', 0),
+(90, '610401f4c15a8', 'DYCS0031', 'B', 1),
+(91, '610401f4c15a8', 'DYCS0032', 'B', 0);
 
 -- --------------------------------------------------------
 
@@ -274,7 +276,7 @@ ALTER TABLE `coordinator`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `hod`
