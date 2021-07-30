@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 23, 2021 at 07:13 PM
+-- Generation Time: Jul 30, 2021 at 11:54 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -66,7 +66,7 @@ CREATE TABLE `dept` (
 
 CREATE TABLE `groups` (
   `sr_no` int(11) NOT NULL,
-  `g_id` varchar(10) NOT NULL,
+  `g_id` varchar(15) NOT NULL,
   `s_id` varchar(10) NOT NULL,
   `division` varchar(1) NOT NULL,
   `Leader` tinyint(1) DEFAULT NULL
@@ -79,13 +79,9 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`sr_no`, `g_id`, `s_id`, `division`, `Leader`) VALUES
 (1, '1', 'DYCS0026', 'C', 1),
 (2, '1', 'DYCS0027', 'C', 0),
-(5, '1', 'DYCS0028', 'C', 0),
-(7, '2', 'DYCS0029', 'C', 1),
-(8, '2', 'DYCS0030', 'C', 0),
-(9, '3', 'DYCS0031', 'B', 1),
-(10, '3', 'DYCS0033', 'B', 0),
-(11, '4', 'DYCS0032', 'B', 1),
-(12, '4', 'DYCS0036', 'B', 0);
+(3, '1', 'DYCS0028', 'C', 0),
+(69, '6103c58ce8f38', 'DYCS0029', 'C', 1),
+(70, '1', 'DYCS0030', 'C', 0);
 
 -- --------------------------------------------------------
 
@@ -156,7 +152,7 @@ CREATE TABLE `projects` (
   `topic` varchar(100) NOT NULL,
   `leader` varchar(50) NOT NULL,
   `mentor` varchar(50) NOT NULL,
-  `active` int(1) DEFAULT NULL
+  `active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -278,7 +274,7 @@ ALTER TABLE `coordinator`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `hod`
@@ -296,7 +292,7 @@ ALTER TABLE `mentor`
 -- AUTO_INCREMENT for table `project_suggestions`
 --
 ALTER TABLE `project_suggestions`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `student`

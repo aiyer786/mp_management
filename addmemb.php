@@ -95,54 +95,86 @@ include('index_back.php')
         </form>
 
         <?php 
-
+        
         $res = mysqli_query($Connect,"SELECT * FROM `student` ");
         while ($data = mysqli_fetch_array($res)) {
             $s_id_check = $data['s_id'];
             $division_check = $data['division'];
-            echo $s_id_check;
+            // echo $s_id_check;
         
             if (isset($_POST['addmemb'])) {
-                // $leader = $_SESSION['s_id'];
-                $division= $_SESSION['division'];
-                // // echo $leader;
-                $g_id = 'AAA';
-                // // echo $g_id;
-                // $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id','$leader','$division','1') ") or die("leader error");
-              
                 $s_id=$_POST['member'];
-                if (strcmp($s_id_check, $s_id)==0 && strcmp($division_check, $division)==0) {
-                    echo 'correct';
-                    $res1 = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id','$s_id','$division','0' )") or die("member error");
-                } elseif (strcmp($division_check, $division)!=0) {
-                    echo'Other Division';
-                } elseif (strcmp($s_id_check, $s_id)!=0) {
-                    echo'Invalid';
+                $leader = $_SESSION['s_id'];
+                $division= $_SESSION['division'];
+                // echo $leader;
+                // $g_id = 'AAA';
+                // echo $g_id;
+                $q12=mysqli_query($Connect, "SELECT s_id FROM groups WHERE s_id = '$leader' ")or die('Error98');
+                $rowcount=mysqli_num_rows($q12);
+                // echo $rowcount;
+                if ($rowcount == 0) {
+                    $g_id = uniqid();
+                    $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id','$leader','$division','1') ") or die("leader error");
+                    echo("<script>alert('Congrats !! You are now a group leader')</script>");
+
+                }
+                
+                $q13=mysqli_query($Connect, "SELECT * FROM groups WHERE s_id = '$leader' AND Leader = '1'")or die('Error99');
+                $data1=mysqli_fetch_assoc($q13);
+                $g_id_member = $data1['g_id'];
+                $q14=mysqli_query($Connect, "SELECT * FROM groups WHERE g_id = '$g_id_member' ")or die('Error100');
+                $rowcount1=mysqli_num_rows($q14);
+                if ($rowcount1<4) {
+                    if (strcmp($s_id_check, $s_id)==0 && strcmp($division_check, $division)==0) {
+                        // echo 'correct';
+                        $res1 = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id_member','$s_id','$division','0' )") or die("member error");
+                    }
+                    // elseif (strcmp($division_check, $division)!=0) {
+                //     echo'Other Division';
+                // } elseif (strcmp($s_id_check, $s_id)!=0) {
+                //     echo'Invalid';
+                // }
                 }
             }
         }
-          $rowcount=mysqli_num_rows($res);
-          echo $rowcount;
-          while ($row=mysqli_fetch_array($res)) {
 
-              // echo $row['g_id'];
-          }
 
         ?>
 
 
 
-
+        
         <ol style="max-width : 50% ; margin-left: 5%;" class="list-group list-group-numbered">
+        <?php 
+            $i=1;
+            $student = $_SESSION['s_id'];
+            $q15=mysqli_query($Connect,"SELECT * FROM `groups` WHERE `s_id` = '$student' ");
+            $row=mysqli_fetch_assoc($q15);
+            $grp_id = $row['g_id'];
+            $q16 = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `g_id` = '$grp_id' ");
+            while ($row1=mysqli_fetch_array($q16)) {
+                $member_id = $row1['s_id'];
+                $q17 = mysqli_query($Connect, "SELECT * FROM `student` WHERE `s_id` = '$member_id' ");
+                while ($row2=mysqli_fetch_array($q17)) {
+                    $F_name = $row2['F_name'];
+                    $M_name = $row2['M_name'];
+                    $L_name = $row2['L_name'];
+                    $Full_name=" {$F_name} {$M_name} {$L_name} ";
+                   ?>
           <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
-              <div class="fw-bold ">Chirag</div>
-              <p class="muted-text" style="font-size: small;">chirag@gmail.com</p>
+              <div class="fw-bold "><?php echo $Full_name?></div>
+              <p class="muted-text" style="font-size: small;"><?php echo $member_id?></p>
             </div>
             <div style="float: right; padding-top: 10px;">
               <button class="btn btn-sm btn-danger">Remove</button>
             </div>
            </li>
+           <?php
+           $i++;
+                }
+            }
+           ?>
           <!-- <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
               <div class="fw-bold">Nihal</div>
