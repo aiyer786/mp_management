@@ -19,7 +19,8 @@
                 $_SESSION['password']  =  $data['password'];   
                 $s_id=$data['s_id']; 
                 $_SESSION['s_id']  = $data['s_id'];
-                $_SESSION['division']   = $data['division']   ;    
+                $_SESSION['division']   = $data['division']   ;  
+                $_SESSION['dept']   = $data['dept']  ;
                 echo("<script>window.location = 'student_home.php?s_id=$s_id'</script>");
             } 
             else {

@@ -124,6 +124,14 @@ include('index_back.php')
                 $g_id_member = $data1['g_id'];
                 $q14=mysqli_query($Connect, "SELECT * FROM groups WHERE g_id = '$g_id_member' ")or die('Error100');
                 $rowcount1=mysqli_num_rows($q14);
+               
+                // ADD something so that students from other groups shouldn't be able to join
+
+                // $q18=mysqli_query($Connect, "SELECT DISTINCT s_id , s_id FROM groups")or die('Error101');
+                // echo $q18;
+                // $rowcount2=mysqli_num_rows($q18);
+                // echo $rowcount2;
+
                 if ($rowcount1<4) {
                     if (strcmp($s_id_check, $s_id)==0 && strcmp($division_check, $division)==0) {
                         // echo 'correct';
@@ -196,6 +204,8 @@ include('index_back.php')
           }
           if(isset($_POST['disband'])){
             $disband = mysqli_query($Connect,"DELETE FROM `groups` WHERE `g_id` = '$grp_id'");
+            $rm_topic = mysqli_query($Connect,"DELETE FROM `project_suggestions` WHERE `g_id`='$grp_id'");
+
           }
             ?>
       </div>

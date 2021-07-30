@@ -94,45 +94,75 @@ include('index_back.php')
       <div class="suggestion">
         <div class="sug1">
            <main class="flex-1 p-6">
-         
+         <form method = "post">
          <div class="mb-3">
-           <label for="exampleFormControlInput1" class="form-label">Topic Name 1</label>
-           <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Topic Name">
+           <label for="exampleFormControlInput1" class="form-label">Topic Name </label>
+           <input type="text" name="topic" class="form-control" id="exampleFormControlInput1" placeholder="Topic Name" >
          </div>
          <div class="mb-3">
-           <label for="exampleFormControlTextarea1" class="form-label">Details</label>
-           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+           <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+           <textarea type="text" name="description" class="form-control"  id="exampleFormControlTextarea1" rows="3" ></textarea>
          </div>
-         <div class="mb-3">
-           <label for="exampleFormControlInput1" class="form-label">Topic Name 2</label>
-           <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Topic Name" >
-         </div>
-         <div class="mb-3">
-           <label for="exampleFormControlTextarea1" class="form-label">Details</label>
-           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-         </div>
-         <div class="mb-3">
-           <label for="exampleFormControlInput1" class="form-label">Topic Name 3</label>
-           <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Topic Name">
-         </div>
-         <div class="mb-3">
-           <label for="exampleFormControlTextarea1" class="form-label">Details</label>
-           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-         </div>
-         <button type="submit" class="btn btn-primary">Submit</button>
-      
+         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        </form>
+        <?php
+
+          
+          $topic = $_POST['topic'];
+          $description = $_POST['description'];
+          $student = $_SESSION['s_id'];
+          $dept = $_SESSION['dept'];
+          $query = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `s_id`= '$student'");
+          $data = mysqli_fetch_assoc($query);
+          $g_id = $data['g_id']; 
+          $query1 = mysqli_query($Connect,"SELECT * FROM `project_suggestions` WHERE `g_id`= '$g_id'");
+          $rowcount = mysqli_num_rows($query1);
+
+         if(isset($_POST['submit'])){
+          $topic_id = uniqid();
+
+          if ($rowcount < 3) {
+              $query2 = mysqli_query($Connect, "INSERT INTO `project_suggestions`( `g_id`, `topic_id`, `topic`, `description`, `dept`, `approved`, `status`) VALUES ('$g_id','$topic_id','$topic','$description','$dept','0','0')") or die("insert error");
+          }
+          if($rowcount == 3){
+            echo "maximum topic limit reached";
+          }
+        }
+        ?>
       </main>
       </div>
-      <div class="sug2">
-      
       </div>
-      </div>
-        
+      <ol style="max-width : 50% ; margin-left: 5%;" class="list-group list-group-numbered">
+      <?php 
+      $i=1;
+        while ($row = mysqli_fetch_array($query1)) {
+          $topic = $row['topic'];
+          $description = $row['description'];
+          $t_id = $row['topic_id'];
+            ?>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold "><?php echo $topic?></div>
+              <p class="muted-text" style="font-size: small;"><?php echo $description?></p>
+            </div>
+            <div style="float: right; padding-top: 10px;">
+            <form method="post"><button  class="btn btn-sm btn-danger" name="<?php echo $t_id ?>">Remove</button></form>
+            </div>
+           </li>
+           <?php
+           if(isset($_POST[$t_id])){
+            $rm_topic = mysqli_query($Connect,"DELETE FROM `project_suggestions` WHERE `topic_id`='$t_id'");
+           }
+           $i++;
+        }
+           ?>
+      </ol>
   </section>
   <script src="js/student.js"></script>
 </body>
 </html>
 
+<!-- PHP Form Backend -->
 
 
 
