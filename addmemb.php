@@ -116,7 +116,7 @@ include('index_back.php')
                     $g_id = uniqid();
                     $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id','$leader','$division','1') ") or die("leader error");
                     echo("<script>alert('Congrats !! You are now a group leader')</script>");
-                  
+
                 }
                 
                 $q13=mysqli_query($Connect, "SELECT * FROM groups WHERE s_id = '$leader' AND Leader = '1'")or die('Error99');
@@ -160,61 +160,44 @@ include('index_back.php')
                     $F_name = $row2['F_name'];
                     $M_name = $row2['M_name'];
                     $L_name = $row2['L_name'];
-                    $Full_name=" {$F_name} {$M_name} {$L_name} ";
-                   ?>
+                    $Full_name=" {$F_name} {$M_name} {$L_name} "; ?>
           <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
               <div class="fw-bold "><?php echo $Full_name?></div>
               <p class="muted-text" style="font-size: small;"><?php echo $member_id?></p>
             </div>
             <div style="float: right; padding-top: 10px;">
-           <?php 
+           <?php
              $leader_check =$row['Leader'];
-             if ($leader_check == '1') {
-              if($leader_check1 == '1'){
-               
-              }else{
-                  echo'<form method="post"><button class="btn btn-sm btn-danger" name="<?php echo $member_id?>">Remove</button></form>';
-                }
-             }
-             if($leader_check1 == '1'){
-              echo 'Leader';
-            }
-                 if (isset($_POST[$member_id])) {
-                     $remove = mysqli_query($Connect, "DELETE FROM `groups` WHERE `s_id`= '$member_id' ") or die("Error101");
-                 }
-             
-              ?>
+                    if ($leader_check == '1') {
+                        if ($leader_check1 == '1') {
+                        } else {
+                            echo'<form method="post"><button class="btn btn-sm btn-danger" name="<?php echo $member_id?>">Remove</button></form>';
+                        }
+                    }
+                    if ($leader_check1 == '1') {
+                        echo 'Leader';
+
+                    }
+                    if (isset($_POST[$member_id])) {
+                        $remove = mysqli_query($Connect, "DELETE FROM `groups` WHERE `s_id`= '$member_id' ") or die("Error101");
+                    } ?>
             </div>
            </li>
            <?php
            $i++;
                 }
-            }
-           
-             
-             
-           ?>
-          <!-- <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Nihal</div>
-              <p class="muted-text" style="font-size: small;">nihal@gmail.com</p>
-            </div>
-            <div style="float: right; padding-top: 10px;">
-              <button class="btn btn-sm btn-danger">Remove</button>
-            </div>
+            }?>
 
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Jay</div>
-              <p class="muted-text" style="font-size: small;">jay@gmail.com</p>
-            </div>
-            <div style="float: right; padding-top: 10px;">
-              <button class="btn btn-sm btn-danger">Remove</button>
-            </div>
-          </li> -->
         </ol>
+        <?php
+          if($leader_check =='1'){
+            echo '<form method="post"><button class="btn btn-sm btn-danger" name="disband">Disband</button></form>';
+          }
+          if(isset($_POST['disband'])){
+            $disband = mysqli_query($Connect,"DELETE FROM `groups` WHERE `g_id` = '$grp_id'");
+          }
+            ?>
       </div>
         
   </section>
