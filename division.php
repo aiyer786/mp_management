@@ -126,7 +126,8 @@
                 ?>
                 <tr>
                     <td data-label="Topic Name"><?php echo $topic?></td>
-                    <td data-label="Description"> <?php echo $description?> </td>
+                    <td style="text-align:initial;" data-label="Description"><br> &nbsp;  &nbsp; &nbsp; <?php echo $description?> </td>
+                    
                     <?php 
                     
                         $approved=$row5['approved'];

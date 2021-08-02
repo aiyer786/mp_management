@@ -26,7 +26,7 @@ include('index_back.php')
       href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
       color="#111" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.6/tailwind.min.css'>
-    
+
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,11 +86,11 @@ include('index_back.php')
   <section class="home-section">
       <div class="text">Add Member</div>
       <div class='add-members-wrapper'>
-        <form style="max-width: 50%;" action="" method='POST'>
+        <form  action="" method='POST'>
           <div class="input-group mb-3">
-            <input name="member" type="text" class="form-control" placeholder="Member's ID" aria-label="Recipient's username"
-              aria-describedby="button-addon2" required>
-            <button class="btn btn-primary text-white  btn-outline-secondary" name="addmemb" type="submit" id="button-addon2">AddMember</button>
+            <input name="member" type="text" style="max-width: 70%;" class="form-control" placeholder="Member's ID" aria-label="Recipient's username"
+              aria-describedby="button-addon2" required></input>
+            <button class="btn btn-primary text-white btn-outline-secondary" name="addmemb" type="submit" id="button-addon2"><i class="bx bx-user-plus"></i></button>
           </div>
         </form>
 
@@ -160,7 +160,7 @@ include('index_back.php')
             $student = $_SESSION['s_id'];
             $q15=mysqli_query($Connect,"SELECT * FROM `groups` WHERE `s_id` = '$student' ");
             $row=mysqli_fetch_assoc($q15);
-            $grp_id = $row['g_id'];
+            @$grp_id = $row['g_id'];
             $q16 = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `g_id` = '$grp_id' ");
             while ($row1=mysqli_fetch_array($q16)) {
                 $member_id = $row1['s_id'];
@@ -203,8 +203,8 @@ include('index_back.php')
 
         </ol>
         <?php
-          if($leader_check =='1'){
-            echo '<form method="post"><button class="btn btn-sm btn-danger" name="disband">Disband</button></form>';
+          if(@$leader_check =='1'){
+            echo '<form method="post"><button class="btn1 btn-sm btn-danger" name="disband">Disband</button></form>';
           }
           if(isset($_POST['disband'])){
             $disband = mysqli_query($Connect,"DELETE FROM `groups` WHERE `g_id` = '$grp_id'");

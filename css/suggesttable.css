@@ -42,8 +42,8 @@ body{
     font-size: 14px;
     letter-spacing: 0.35px;
     font-weight: normal;
-    color: #f1f1f1;
-    background-color: #3c3f44;
+    color: black;
+    background-color: #FFFFFF;
     padding: 8px;
     text-align: center;
     border: 1px solid #dee2e685;
@@ -87,7 +87,20 @@ body{
         padding-left: 50%;
         position:relative;        
     }
-    
+    .table tbody tr td .btn{
+        width:  20px;
+        text-decoration: none;
+        line-height: 12px;
+        display: inline-block;
+        background-color: #dc3545;
+        font-weight: medium;
+        color: #FFFFFF;
+        align-items: center;
+        user-select: none;
+        border: 1px solid transparent;
+        font-size: 14px;
+        opacity: 1;
+    }
     .table td:before{
         content: attr(data-label);
         position: absolute;

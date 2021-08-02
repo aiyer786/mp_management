@@ -276,19 +276,27 @@
 .name{
   margin-top: 5px;
 }
+.btn1 {
+  margin-top: 15px;
+  margin-left: 80px;
+}
 
-@media only screen and (max-width: 620px) {
+@media only screen and (max-width: 640px) {
   
   .add-members-wrapper{
    
-    width: 500px;
+    width: 525px;
     
   }
-  
+  .btn1 {
+    margin-top: 15px;
+    margin-left: 25px;
+  } 
   .btn btn-primary text-white  btn-outline-secondary{
     width: 10px;
   }
   .form-control{
+    
     width: 200px;
   }
   .imge{
@@ -296,9 +304,6 @@
   }
   .name{
     margin-left: 20px;
-  }
-  .form-control{
-    width: 200px;
   }
   .sidebar{
     width: 60px;

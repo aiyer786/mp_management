@@ -38,6 +38,7 @@ include('index_back.php')
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="css/student.css">
+     <link rel="stylesheet" href="css/suggesttable.css">
    </head>
 <body>
   <div class="sidebar">
@@ -108,8 +109,8 @@ include('index_back.php')
         <?php
 
           
-          $topic = $_POST['topic'];
-          $description = $_POST['description'];
+          @$topic = $_POST['topic'];
+          @$description = $_POST['description'];
           $student = $_SESSION['s_id'];
           $dept = $_SESSION['dept'];
           $query = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `s_id`= '$student'");
@@ -122,7 +123,7 @@ include('index_back.php')
           $topic_id = uniqid();
 
           if ($rowcount < 3) {
-              $query2 = mysqli_query($Connect, "INSERT INTO `project_suggestions`( `g_id`, `topic_id`, `topic`, `description`, `dept`, `approved`, `status`) VALUES ('$g_id','$topic_id','$topic','$description','$dept','0','0')") or die("insert error");
+              $query2 = mysqli_query($Connect, "INSERT INTO `project_suggestions`( `g_id`, `topic_id`, `topic`, `description`,  `approved`, `status`) VALUES ('$g_id','$topic_id','$topic','$description','0','0')") or die("insert error");
           }
           if($rowcount == 3){
             echo "maximum topic limit reached";
@@ -140,7 +141,7 @@ include('index_back.php')
           $description = $row['description'];
           $t_id = $row['topic_id'];
             ?>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
+      <!-- <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
               <div class="fw-bold "><?php echo $topic?></div>
               <p class="muted-text" style="font-size: small;"><?php echo $description?></p>
@@ -148,8 +149,27 @@ include('index_back.php')
             <div style="float: right; padding-top: 10px;">
             <form method="post"><button  class="btn btn-sm btn-danger" name="<?php echo $t_id ?>">Remove</button></form>
             </div>
-           </li>
-           <?php
+           </li> -->
+           <table class="table">
+            <thead>
+          
+              </thead>
+            <tbody> <tr>
+            <td data-label="Sr.no"><?php echo $i?></td>
+             <td data-label="Topic "><?php echo $topic?></td>
+                    <td style="text-align:left;" data-label="Description"><br><?php echo $description?> </td>
+                    <td ><form method="post"><button type="submit" class="btn" name="<?php echo $t_id ?>"><i class='bx bx-trash'></i></button></form></td>
+           </tr>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                    <?php
            if(isset($_POST[$t_id])){
             $rm_topic = mysqli_query($Connect,"DELETE FROM `project_suggestions` WHERE `topic_id`='$t_id'");
            }
