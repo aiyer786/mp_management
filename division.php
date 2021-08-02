@@ -1,5 +1,6 @@
 <?php
  include('Connect.php');
+ include('index_back.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,18 +42,20 @@
    
    
 
-
+    
 
     <div class="table-container">
-        
+   
         <?php
         $a=1;
             $i=1;
+            $dept = $_SESSION['dept'];
             $division=$_GET['division'];
-            echo'<h1 class="heading">DIV '.$division.'</h1>';
-               $res3 = mysqli_query($Connect," SELECT * FROM `groups` WHERE `Leader` = '1' AND `division`='$division' ");
+            echo'<h1 class="heading">DIV '.$division.'</h1> <a href="logout.php"> LogOut</a>';
+               $res3 = mysqli_query($Connect," SELECT * FROM `groups` WHERE `Leader` = '1' AND `division`='$division' and `dept` = '$dept' ");
                while ($row3=mysqli_fetch_array($res3)) {
                    $g_id=$row3['g_id']; ?> 
+                   
         <table class="table">
 
         <thead>
@@ -130,19 +133,19 @@
                        
                     
 
-                        // aprroved  == null implies not selected
+                        // aprroved  == 0 implies not selected
                         // approved  == 1 implies project is approved
                         // approved  == 2 implies project is rejected
 
                         if ($approved == 0) {
                             ?>
-                            <td data-label="Action"><form method="post"><button  name="<?php echo $topic_id ?>" class="btn">Approve</button></form></td>
+                            <td data-label="Action"><form method="post"><input type="submit" class="btn" name="<?php echo $topic_id ?>" value="Approve"></form></td>
                             <?php
                             if(isset($_POST[$topic_id])) {
                                 $res6 = mysqli_query($Connect, "UPDATE `project_suggestions` SET `approved`='1' ,`status`='1' WHERE `topic_id`='$topic_id' AND `g_id` = '$g_id'") or die("error 1"); 
                                 $res7 = mysqli_query($Connect, "UPDATE `project_suggestions` SET `approved`='2'  WHERE `status`='0' AND `g_id` = '$g_id'") or die("error 2");  
                                 $leader = $row3['s_id'];
-                                $res8 =  mysqli_query($Connect , "INSERT INTO `projects`(`g_id`, `topic`, `leader`, `mentor`,`active`) VALUES ('$g_id','$topic','$leader','0','0')") or die("error insert");    
+                                $res8 =  mysqli_query($Connect , "INSERT INTO `projects`(`g_id`, `topic_id`,`topic`, `leader`, `mentor`,`active`) VALUES ('$g_id','$topic_id','$topic','$leader','0','0')") or die("error insert");    
                             }
                            
                                 

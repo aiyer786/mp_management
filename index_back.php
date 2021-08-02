@@ -66,7 +66,8 @@
             $data = mysqli_fetch_assoc($res);
             if (strcmp($data['password'], $password)==0) {
                 $_SESSION['email']=$data['email'];
-                $_SESSION['password']  =  $data['password'];                
+                $_SESSION['password']  =  $data['password']; 
+                $_SESSION['dept']   =   $data['dept'] ;      
                 echo("<script>window.location = 'div_select.php'</script>");
             } 
             else {

@@ -100,12 +100,14 @@ include('index_back.php')
         while ($data = mysqli_fetch_array($res)) {
             $s_id_check = $data['s_id'];
             $division_check = $data['division'];
+            $dept_check = $data['dept'];
             // echo $s_id_check;
         
             if (isset($_POST['addmemb'])) {
                 $s_id=$_POST['member'];
                 $leader = $_SESSION['s_id'];
                 $division= $_SESSION['division'];
+                $dept = $_SESSION['dept'];
                 // echo $leader;
                 // $g_id = 'AAA';
                 // echo $g_id;
@@ -114,7 +116,7 @@ include('index_back.php')
                 // echo $rowcount;
                 if ($rowcount == 0) {
                     $g_id = uniqid();
-                    $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id','$leader','$division','1') ") or die("leader error");
+                    $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`,`dept`) VALUES ('$g_id','$leader','$division','1','$dept') ") or die("leader error");
                     echo("<script>alert('Congrats !! You are now a group leader')</script>");
 
                 }
@@ -133,9 +135,9 @@ include('index_back.php')
                 // echo $rowcount2;
 
                 if ($rowcount1<4) {
-                    if (strcmp($s_id_check, $s_id)==0 && strcmp($division_check, $division)==0) {
+                    if (strcmp($s_id_check, $s_id)==0 && strcmp($division_check, $division)==0 && strcmp($dept_check, $dept)==0) {
                         // echo 'correct';
-                        $res1 = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`) VALUES ('$g_id_member','$s_id','$division','0' )") or die("member error");
+                        $res1 = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`,`dept` ,`Leader`) VALUES ('$g_id_member','$s_id','$division','$dept','0' )") or die("member error");
                     }
                 // elseif (strcmp($division_check, $division)!=0) {
                 //     echo'Other Division';
@@ -180,7 +182,9 @@ include('index_back.php')
                     if ($leader_check == '1') {
                         if ($leader_check1 == '1') {
                         } else {
-                            echo'<form method="post"><button class="btn btn-sm btn-danger" name="<?php echo $member_id?>">Remove</button></form>';
+                            
+                            echo'<form method="post"><button class="btn btn-sm btn-danger" name="'.$member_id.'">Remove</button></form>';
+                          
                         }
                     }
                     if ($leader_check1 == '1') {
@@ -188,7 +192,7 @@ include('index_back.php')
 
                     }
                     if (isset($_POST[$member_id])) {
-                        $remove = mysqli_query($Connect, "DELETE FROM `groups` WHERE `s_id`= '$member_id' ") or die("Error101");
+                        $remove = mysqli_query($Connect, "DELETE FROM `groups` WHERE `s_id`= '$member_id' AND `g_id` = '$grp_id' ") or die("Error101");
                     } ?>
             </div>
            </li>

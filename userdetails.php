@@ -105,7 +105,7 @@
                     $division=$_POST['division'];
                     $batch=$_POST['batch'];
                     // $query = "INSERT INTO `student` VALUES ('$dept','$roll_no','$F_name','$M_name','$L_name','$email','$password','$contact','$year','$divison','$batch', '0')";
-                    $query ="INSERT INTO `student`(`dept`, `roll_no`, `F_name`, `M_name`, `L_name`, `email`, `password`, `contact`, `year`, `division`, `batch`, `active`) VALUES ('$dept','$roll_no','$F_name','$M_name','$L_name','$email','$password','$contact','$year','$division','$batch','$active')";
+                    $query ="INSERT INTO `student`(`dept`, `roll_no`, `F_name`, `M_name`, `L_name`, `email`, `password`, `contact`, `year`, `division`, `batch`, `active`) VALUES ('$dept','$roll_no','$F_name','$M_name','$L_name','$email','$password','$contact','$year','$division','$batch','0')";
                     $res = mysqli_query($Connect, $query);
                     if(!$res){
                         echo("<script>alert('Error!! data not inserted into database')</script>");
