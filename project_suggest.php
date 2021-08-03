@@ -124,6 +124,7 @@ include('index_back.php')
 
           if ($rowcount < 3) {
               $query2 = mysqli_query($Connect, "INSERT INTO `project_suggestions`( `g_id`, `topic_id`, `topic`, `description`,  `approved`, `status`) VALUES ('$g_id','$topic_id','$topic','$description','0','0')") or die("insert error");
+              echo("<meta http-equiv='refresh' content='0'>");
           }
           if($rowcount == 3){
             echo "maximum topic limit reached";
@@ -172,6 +173,7 @@ include('index_back.php')
                     <?php
            if(isset($_POST[$t_id])){
             $rm_topic = mysqli_query($Connect,"DELETE FROM `project_suggestions` WHERE `topic_id`='$t_id'");
+            echo("<meta http-equiv='refresh' content='0'>");
            }
            $i++;
         }

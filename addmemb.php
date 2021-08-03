@@ -1,6 +1,7 @@
 <?php 
 include('Connect.php');
-include('index_back.php')
+include('index_back.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -118,7 +119,7 @@ include('index_back.php')
                     $g_id = uniqid();
                     $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`,`dept`) VALUES ('$g_id','$leader','$division','1','$dept') ") or die("leader error");
                     echo("<script>alert('Congrats !! You are now a group leader')</script>");
-
+                    header('Refresh:0');   
                 }
                 
                 $q13=mysqli_query($Connect, "SELECT * FROM groups WHERE s_id = '$leader' AND Leader = '1'")or die('Error99');
@@ -182,8 +183,7 @@ include('index_back.php')
                     if ($leader_check == '1') {
                         if ($leader_check1 == '1') {
                         } else {
-                            
-                            echo'<form method="post"><button class="btn btn-sm btn-danger" name="'.$member_id.'">Remove</button></form>';
+                            echo'<form method="post"><button class="btn btn-sm btn-danger" name="'.$member_id.'" onclick="location.reload()">Remove</button></form>';
                           
                         }
                     }
@@ -193,6 +193,7 @@ include('index_back.php')
                     }
                     if (isset($_POST[$member_id])) {
                         $remove = mysqli_query($Connect, "DELETE FROM `groups` WHERE `s_id`= '$member_id' AND `g_id` = '$grp_id' ") or die("Error101");
+                        echo("<meta http-equiv='refresh' content='0'>");
                     } ?>
             </div>
            </li>
@@ -204,13 +205,15 @@ include('index_back.php')
         </ol>
         <?php
           if(@$leader_check =='1'){
-            echo '<form method="post"><button class="btn1 btn-sm btn-danger" name="disband">Disband</button></form>';
+            echo '<form method="post"><button class="btn1 btn-sm btn-danger" name="disband" >Disband</button></form>';
           }
           if(isset($_POST['disband'])){
             $disband = mysqli_query($Connect,"DELETE FROM `groups` WHERE `g_id` = '$grp_id'");
             $rm_topic = mysqli_query($Connect,"DELETE FROM `project_suggestions` WHERE `g_id`='$grp_id'");
-
+            echo("<meta http-equiv='refresh' content='0'>");
           }
+
+          
             ?>
       </div>
         

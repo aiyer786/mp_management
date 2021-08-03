@@ -146,7 +146,8 @@
                                 $res6 = mysqli_query($Connect, "UPDATE `project_suggestions` SET `approved`='1' ,`status`='1' WHERE `topic_id`='$topic_id' AND `g_id` = '$g_id'") or die("error 1"); 
                                 $res7 = mysqli_query($Connect, "UPDATE `project_suggestions` SET `approved`='2'  WHERE `status`='0' AND `g_id` = '$g_id'") or die("error 2");  
                                 $leader = $row3['s_id'];
-                                $res8 =  mysqli_query($Connect , "INSERT INTO `projects`(`g_id`, `topic_id`,`topic`, `leader`, `mentor`,`active`) VALUES ('$g_id','$topic_id','$topic','$leader','0','0')") or die("error insert");    
+                                $res8 =  mysqli_query($Connect , "INSERT INTO `projects`(`g_id`, `topic_id`,`topic`, `leader`, `mentor`,`active`) VALUES ('$g_id','$topic_id','$topic','$leader','0','0')") or die("error insert"); 
+                                echo("<meta http-equiv='refresh' content='0'>");   
                             }
                            
                                 
@@ -168,7 +169,7 @@
 
                         $res9=mysqli_query($Connect, "UPDATE `project_suggestions` SET `approved`='0' ,`status`='0' WHERE  `g_id` = '$g_id'") or die("error 4");
                         $res10 =  mysqli_query($Connect , "DELETE FROM `projects` WHERE `g_id` = '$g_id' ") or die("error insert");
-
+                        echo("<meta http-equiv='refresh' content='0'>");
                      }
                     ?>
                 </tr>

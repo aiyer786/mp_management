@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 02, 2021 at 09:15 AM
+-- Generation Time: Aug 03, 2021 at 09:21 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -80,8 +80,11 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`sr_no`, `g_id`, `s_id`, `Leader`, `dept`, `division`) VALUES
 (71, '1', 'DYCS0026', 1, 'CS', 'C'),
 (86, '1', 'DYCS0027', 0, 'CS', 'C'),
-(87, '1', 'DYCS0028', 0, 'CS', 'C'),
-(109, '61079964d9be6', 'DYCS0029', 1, 'CS', 'C');
+(115, '1', 'DYCS0028', 0, 'CS', 'C'),
+(121, '1', 'DYCS0030', 0, 'CS', 'C'),
+(185, '6108ed38ada25', 'DYCS0029', 1, 'CS', 'C'),
+(186, '6108ed38ada25', 'DYCS0028', 0, 'CS', 'C'),
+(187, '6108ed38ada25', 'DYCS0030', 0, 'CS', 'C');
 
 -- --------------------------------------------------------
 
@@ -179,7 +182,10 @@ CREATE TABLE `project_suggestions` (
 INSERT INTO `project_suggestions` (`sr_no`, `g_id`, `topic_id`, `topic`, `description`, `approved`, `status`) VALUES
 (2, '1', '2', 'Freelancing App:', 'A decentralized skill assessment and freelancing app that will let people assess their particular skills through a series of automated tests or problems.\r\n', 0, 0),
 (3, '1', '3', '\r\nReviews website\r\n', 'Dedicated to reviewing certain items or products. \r\nWe  can critique tech gadgets, movies, pet toys, or anything else that interests you. \r\nAlso how worthy is that product as per the price ie if its a worth to buy or not\r\nAlso real life review can be provided using images to check the quality and quantity of products.\r\n', 0, 0),
-(5, '1', '4', 'a gift planner', 'plan gifts for birthdays etc.', 0, 0);
+(5, '1', '4', 'a gift planner', 'plan gifts for birthdays etc.', 0, 0),
+(40, '6108ed38ada25', '6108ed49589dc', 'njnsjd', 'dnedid', 0, 0),
+(42, '6108ed38ada25', '6108ed9ac6c42', 'wdndnwd', 'dwjdnjd', 0, 0),
+(43, '6108ed38ada25', '6108eda17d73b', 'edhbd', 'dednj', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -274,7 +280,7 @@ ALTER TABLE `coordinator`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 
 --
 -- AUTO_INCREMENT for table `hod`
@@ -292,7 +298,7 @@ ALTER TABLE `mentor`
 -- AUTO_INCREMENT for table `project_suggestions`
 --
 ALTER TABLE `project_suggestions`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `student`
