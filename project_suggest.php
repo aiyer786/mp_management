@@ -95,17 +95,7 @@ include('index_back.php')
       <div class="suggestion">
         <div class="sug1">
            <main class="flex-1 p-6">
-         <form method = "post">
-         <div class="mb-3">
-           <label for="exampleFormControlInput1" class="form-label">Topic Name </label>
-           <input type="text" name="topic" class="form-control" id="exampleFormControlInput1" placeholder="Topic Name" >
-         </div>
-         <div class="mb-3">
-           <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-           <textarea type="text" name="description" class="form-control"  id="exampleFormControlTextarea1" rows="3" ></textarea>
-         </div>
-         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-        </form>
+
         <?php
 
           
@@ -113,10 +103,28 @@ include('index_back.php')
           @$description = $_POST['description'];
           $student = $_SESSION['s_id'];
           $dept = $_SESSION['dept'];
-          $query = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `s_id`= '$student'");
+          $query = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `s_id`= '$student'") or die("Join a Group to Suggest Topic");
           $data = mysqli_fetch_assoc($query);
-          $g_id = $data['g_id']; 
-          $query1 = mysqli_query($Connect,"SELECT * FROM `project_suggestions` WHERE `g_id`= '$g_id'");
+          @$g_id = $data['g_id']; 
+          if(empty($g_id)){
+            echo 'JOIN a Group to Suggest Topic';
+          }
+          else{
+            echo'
+            <form method = "post">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Topic Name </label>
+              <input type="text" name="topic" class="form-control" id="exampleFormControlInput1" placeholder="Topic Name" >
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+              <textarea type="text" name="description" class="form-control"  id="exampleFormControlTextarea1" rows="3" ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+           </form>
+            ';
+          }
+          $query1 = mysqli_query($Connect,"SELECT * FROM `project_suggestions` WHERE `g_id`= '$g_id'") ;
           $rowcount = mysqli_num_rows($query1);
 
          if(isset($_POST['submit'])){
@@ -141,6 +149,7 @@ include('index_back.php')
           $topic = $row['topic'];
           $description = $row['description'];
           $t_id = $row['topic_id'];
+          $status = $row['approved'];
             ?>
       <!-- <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
@@ -159,22 +168,31 @@ include('index_back.php')
             <td data-label="Sr.no"><?php echo $i?></td>
              <td data-label="Topic "><?php echo $topic?></td>
                     <td style="text-align:left;" data-label="Description"><br><?php echo $description?> </td>
-                    <td ><form method="post"><button type="submit" class="btn" name="<?php echo $t_id ?>"><i class='bx bx-trash'></i></button></form></td>
+                    <td>
+                    <?php 
+                     if($status == 0){
+                      echo '<form method="post"><button type="submit" class="btn" name=" '.$t_id.'"><i class="bx bx-trash"></i></button></form>';
+                    }
+                      if($status == 1){
+                      echo 'Accepted';
+                    }
+                    if ($status == 2){
+                      echo 'Rejected';
+                    }
+                    ?>
+                    </td>
+                    
            </tr>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                    <?php
-           if(isset($_POST[$t_id])){
-            $rm_topic = mysqli_query($Connect,"DELETE FROM `project_suggestions` WHERE `topic_id`='$t_id'");
-            echo("<meta http-equiv='refresh' content='0'>");
-           }
+                
+           <?php
+           
+            if (isset($_POST[$t_id])) {
+                $rm_topic = mysqli_query($Connect, "DELETE FROM `project_suggestions` WHERE `topic_id`='$t_id'");
+                echo("<meta http-equiv='refresh' content='0'>");
+            }
+
+
+           
            $i++;
         }
            ?>

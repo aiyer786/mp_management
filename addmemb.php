@@ -97,8 +97,9 @@ include('index_back.php');
 
         <?php 
         
-        $res = mysqli_query($Connect,"SELECT * FROM `student` ");
+        $res = mysqli_query($Connect,"SELECT * FROM `student` WHERE `active` = '0' ");
         while ($data = mysqli_fetch_array($res)) {
+            
             $s_id_check = $data['s_id'];
             $division_check = $data['division'];
             $dept_check = $data['dept'];
@@ -114,17 +115,20 @@ include('index_back.php');
                 // echo $g_id;
                 $q12=mysqli_query($Connect, "SELECT s_id FROM groups WHERE s_id = '$leader' ")or die('Error98');
                 $rowcount=mysqli_num_rows($q12);
-                // echo $rowcount;
                 if ($rowcount == 0) {
-                    $g_id = uniqid();
-                    $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`,`dept`) VALUES ('$g_id','$leader','$division','1','$dept') ") or die("leader error");
-                    echo("<script>alert('Congrats !! You are now a group leader')</script>");
-                    header('Refresh:0');   
+                
+                      $g_id = uniqid();
+                      $res = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`, `Leader`,`dept`) VALUES ('$g_id','$leader','$division','1','$dept') ") or die("leader error");
+                      $status = mysqli_query($Connect, "UPDATE `student` SET `active`='1' WHERE `s_id`= '$leader'") or die("Leader status error");
+                      echo("<script>alert('Congrats !! You are now a group leader')</script>");
+                      echo("<meta http-equiv='refresh' content='0'>");
+                  
+                      
                 }
                 
                 $q13=mysqli_query($Connect, "SELECT * FROM groups WHERE s_id = '$leader' AND Leader = '1'")or die('Error99');
                 $data1=mysqli_fetch_assoc($q13);
-                $g_id_member = $data1['g_id'];
+                @$g_id_member = $data1['g_id'] or die("<center><b>You are Not The Leader</b></center>");
                 $q14=mysqli_query($Connect, "SELECT * FROM groups WHERE g_id = '$g_id_member' ")or die('Error100');
                 $rowcount1=mysqli_num_rows($q14);
                
@@ -135,10 +139,11 @@ include('index_back.php');
                 // $rowcount2=mysqli_num_rows($q18);
                 // echo $rowcount2;
 
-                if ($rowcount1<4) {
+                if ($rowcount1<4){
                     if (strcmp($s_id_check, $s_id)==0 && strcmp($division_check, $division)==0 && strcmp($dept_check, $dept)==0) {
                         // echo 'correct';
                         $res1 = mysqli_query($Connect, "INSERT INTO `groups`(`g_id`, `s_id`, `division`,`dept` ,`Leader`) VALUES ('$g_id_member','$s_id','$division','$dept','0' )") or die("member error");
+                        $status = mysqli_query($Connect ,"UPDATE `student` SET `active`='1' WHERE `s_id`= '$s_id'") or die("Member status error");
                     }
                 // elseif (strcmp($division_check, $division)!=0) {
                 //     echo'Other Division';
@@ -184,22 +189,23 @@ include('index_back.php');
                         if ($leader_check1 == '1') {
                         } else {
                             echo'<form method="post"><button class="btn btn-sm btn-danger" name="'.$member_id.'" onclick="location.reload()">Remove</button></form>';
-                          
                         }
                     }
                     if ($leader_check1 == '1') {
                         echo 'Leader';
-
                     }
                     if (isset($_POST[$member_id])) {
-                        $remove = mysqli_query($Connect, "DELETE FROM `groups` WHERE `s_id`= '$member_id' AND `g_id` = '$grp_id' ") or die("Error101");
-                        echo("<meta http-equiv='refresh' content='0'>");
+                        $status_rm = mysqli_query($Connect, "UPDATE `student` SET `active`='0' WHERE `s_id`= '$member_id'") or die("Remove status error");
+                        if ($status_rm == true) {
+                            $remove = mysqli_query($Connect, "DELETE FROM `groups` WHERE `s_id`= '$member_id' AND `g_id` = '$grp_id' ") or die("Error101");
+                            echo("<meta http-equiv='refresh' content='0'>");
+                        }
                     } ?>
             </div>
            </li>
            <?php
            $i++;
-                }
+                }  
             }?>
 
         </ol>
@@ -208,9 +214,18 @@ include('index_back.php');
             echo '<form method="post"><button class="btn1 btn-sm btn-danger" name="disband" >Disband</button></form>';
           }
           if(isset($_POST['disband'])){
-            $disband = mysqli_query($Connect,"DELETE FROM `groups` WHERE `g_id` = '$grp_id'");
-            $rm_topic = mysqli_query($Connect,"DELETE FROM `project_suggestions` WHERE `g_id`='$grp_id'");
-            echo("<meta http-equiv='refresh' content='0'>");
+            $q19 = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `g_id` = '$grp_id'");
+            $x=1;
+            while($data2 = mysqli_fetch_array($q19)){
+              $members = $data2['s_id'];
+              $status_rm = mysqli_query($Connect, "UPDATE `student` SET `active`='0' WHERE `s_id`= '$members'") or die("Remove status error");
+              $x++;
+            }
+            if ($status_rm == true) {
+                $disband = mysqli_query($Connect, "DELETE FROM `groups` WHERE `g_id` = '$grp_id'");
+                $rm_topic = mysqli_query($Connect, "DELETE FROM `project_suggestions` WHERE `g_id`='$grp_id'");
+                echo("<meta http-equiv='refresh' content='0'>");
+            }
           }
 
           
