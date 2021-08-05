@@ -163,7 +163,7 @@ include('index_back.php');
         <ol style="max-width : 50% ; margin-left: 5%;" class="list-group list-group-numbered">
         <?php 
             $i=1;
-            $student = $_SESSION['s_id'];
+            @$student = $_SESSION['s_id'] or die("Session Expired !! Login Again");
             $q15=mysqli_query($Connect,"SELECT * FROM `groups` WHERE `s_id` = '$student' ");
             $row=mysqli_fetch_assoc($q15);
             @$grp_id = $row['g_id'];

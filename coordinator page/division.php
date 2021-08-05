@@ -38,7 +38,7 @@
     </nav> -->
     <!--Navbar End -->
     <div class="table-container">
-        <!-- <h1 class="heading">DIV A</h1> -->
+        <h1 class="heading">DIV A</h1>
         <table class="table">
             <thead>
                  <th>S.No</th>

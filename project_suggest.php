@@ -101,7 +101,7 @@ include('index_back.php')
           
           @$topic = $_POST['topic'];
           @$description = $_POST['description'];
-          $student = $_SESSION['s_id'];
+          @$student = $_SESSION['s_id'] or die("Session Expired !! Login Again");
           $dept = $_SESSION['dept'];
           $query = mysqli_query($Connect,"SELECT * FROM `groups` WHERE `s_id`= '$student'") or die("Join a Group to Suggest Topic");
           $data = mysqli_fetch_assoc($query);

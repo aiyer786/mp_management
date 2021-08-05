@@ -67,8 +67,9 @@
             if (strcmp($data['password'], $password)==0) {
                 $_SESSION['email']=$data['email'];
                 $_SESSION['password']  =  $data['password']; 
-                $_SESSION['dept']   =   $data['dept'] ;      
-                echo("<script>window.location = 'div_select.php'</script>");
+                $_SESSION['dept']   =   $data['dept'] ;  
+                $_SESSION['c_id']    = $data['c_id'];
+                echo("<script>window.location = 'coor_home.php'</script>");
             } 
             else {
                 echo'wrong password';
