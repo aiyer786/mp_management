@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2021 at 09:21 AM
+-- Generation Time: Aug 09, 2021 at 03:05 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -78,13 +78,11 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`sr_no`, `g_id`, `s_id`, `Leader`, `dept`, `division`) VALUES
-(71, '1', 'DYCS0026', 1, 'CS', 'C'),
-(86, '1', 'DYCS0027', 0, 'CS', 'C'),
-(115, '1', 'DYCS0028', 0, 'CS', 'C'),
-(121, '1', 'DYCS0030', 0, 'CS', 'C'),
-(185, '6108ed38ada25', 'DYCS0029', 1, 'CS', 'C'),
-(186, '6108ed38ada25', 'DYCS0028', 0, 'CS', 'C'),
-(187, '6108ed38ada25', 'DYCS0030', 0, 'CS', 'C');
+(240, '610b896824c27', 'DYCS0026', 1, 'CS', 'C'),
+(242, '610b896824c27', 'DYCS0027', 0, 'CS', 'C'),
+(245, '610ba45ee59c1', 'DYCS0029', 1, 'CS', 'C'),
+(246, '610ba45ee59c1', 'DYCS0030', 0, 'CS', 'C'),
+(247, '610ba45ee59c1', 'DYCS0028', 0, 'CS', 'C');
 
 -- --------------------------------------------------------
 
@@ -175,18 +173,6 @@ CREATE TABLE `project_suggestions` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `project_suggestions`
---
-
-INSERT INTO `project_suggestions` (`sr_no`, `g_id`, `topic_id`, `topic`, `description`, `approved`, `status`) VALUES
-(2, '1', '2', 'Freelancing App:', 'A decentralized skill assessment and freelancing app that will let people assess their particular skills through a series of automated tests or problems.\r\n', 0, 0),
-(3, '1', '3', '\r\nReviews website\r\n', 'Dedicated to reviewing certain items or products. \r\nWe  can critique tech gadgets, movies, pet toys, or anything else that interests you. \r\nAlso how worthy is that product as per the price ie if its a worth to buy or not\r\nAlso real life review can be provided using images to check the quality and quantity of products.\r\n', 0, 0),
-(5, '1', '4', 'a gift planner', 'plan gifts for birthdays etc.', 0, 0),
-(40, '6108ed38ada25', '6108ed49589dc', 'njnsjd', 'dnedid', 0, 0),
-(42, '6108ed38ada25', '6108ed9ac6c42', 'wdndnwd', 'dwjdnjd', 0, 0),
-(43, '6108ed38ada25', '6108eda17d73b', 'edhbd', 'dednj', 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -215,11 +201,11 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`sr_no`, `s_id`, `dept`, `roll_no`, `F_name`, `M_name`, `L_name`, `email`, `password`, `contact`, `year`, `division`, `batch`, `active`) VALUES
-(26, 'DYCS0026', 'CS', '19CE7013', 'ADITYA', 'SAMBASIVAN', 'IYER', 'aiyer786@gmail.com', 'dypatil@123', 90882765456, 'TE', 'C', 'C1', 0),
-(27, 'DYCS0027', 'CS', '19CE7014', 'Kshitija ', 'Shashank ', 'Bharambe', 'bharambekshitija@gmail.com', 'dypatil@123', 87876554321, 'TE', 'C', 'C1', 0),
-(28, 'DYCS0028', 'CS', '19CE7015', 'Omkar', 'Datta', 'Ukirde', 'ukirdeomkar4@gmail.com', 'dypatil@123', 766578763457, 'TE', 'C', 'C1', 0),
-(29, 'DYCS0029', 'CS', '19CE7016', 'Jay', 'Middlename', 'Doshi', 'middlename@gmail.com', 'dypatil@123', 12345676545677, 'TE', 'C', 'C1', 0),
-(30, 'DYCS0030', 'CS', '19CE7017', 'Amol', 'Kamlakar', 'Palekar', 'chhotisi@baat', 'dypatil@123', 4567654334567, 'TE', 'C', 'C1', 0),
+(26, 'DYCS0026', 'CS', '19CE7013', 'ADITYA', 'SAMBASIVAN', 'IYER', 'aiyer786@gmail.com', 'dypatil@123', 90882765456, 'TE', 'C', 'C1', 1),
+(27, 'DYCS0027', 'CS', '19CE7014', 'Kshitija ', 'Shashank ', 'Bharambe', 'bharambekshitija@gmail.com', 'dypatil@123', 87876554321, 'TE', 'C', 'C1', 1),
+(28, 'DYCS0028', 'CS', '19CE7015', 'Omkar', 'Datta', 'Ukirde', 'ukirdeomkar4@gmail.com', 'dypatil@123', 766578763457, 'TE', 'C', 'C1', 1),
+(29, 'DYCS0029', 'CS', '19CE7016', 'Jay', 'Middlename', 'Doshi', 'middlename@gmail.com', 'dypatil@123', 12345676545677, 'TE', 'C', 'C1', 1),
+(30, 'DYCS0030', 'CS', '19CE7017', 'Amol', 'Kamlakar', 'Palekar', 'chhotisi@baat', 'dypatil@123', 4567654334567, 'TE', 'C', 'C1', 1),
 (31, 'DYCS0031', 'CS', '19CE8013', 'Akshay ', 'Khiladi', 'Kumar', 'khiladi786@kumar.com', 'dypatil@123', 786786786786, 'TE', 'B', 'b1', 0),
 (32, 'DYCS0032', 'CS', '19CE8014', 'Shahrukh', 'Taj', 'Khan', 'badshah@bollywood.com', 'dypatil@123', 45678945623, 'TE', 'B', 'B3', 0),
 (33, 'DYCS0033', 'CS', '19CE8015', 'Irrfan', 'Yaseen Ali', 'Khan', 'greatest@actor.com', 'dypatil@123', 9082946276, 'TE', 'B', 'B3', 0),
@@ -280,7 +266,7 @@ ALTER TABLE `coordinator`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT for table `hod`
@@ -298,7 +284,7 @@ ALTER TABLE `mentor`
 -- AUTO_INCREMENT for table `project_suggestions`
 --
 ALTER TABLE `project_suggestions`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `student`
