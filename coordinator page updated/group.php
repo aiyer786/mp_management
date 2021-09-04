@@ -68,7 +68,7 @@
 
 
 <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
-<div class="custom-select" style="width:500px;">
+<div class="custom-select">
 
   <select>
     <option value="0">Select Group</option>
