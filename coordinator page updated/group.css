@@ -29,13 +29,11 @@
   
   
 }
-
 .dropdown {
   position: relative;
   display: block;
   padding: 22px 28px;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -44,18 +42,14 @@
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-
 .dropdown-content a:hover {background-color: #ddd;}
-
 .dropdown:hover .dropdown-content {display: block;}
-
 .dropdown:hover .dropbtn {background-color: #dc3545;}
 .fa fa-caret-down{
     color: white;
@@ -124,6 +118,19 @@
 .select-items div:hover, .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.button {
+    background-color: #3c3f44; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 90px 8px;
+    cursor: pointer;
+  }
 
 @media screen and (min-width: 768px){
   :root{

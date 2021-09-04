@@ -30,12 +30,10 @@
                 <div class="nav__toggle" id="nav-toggle">
                     <i class='bx bx-menu'></i>
                 </div>
-
                 <div class="nav__menu" id="nav-menu">
                     <div class="nav__close" id="nav-close">
                         <i class='bx bx-x'></i>
                     </div>
-
                     <ul class="nav__list">
                         <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
                         <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
@@ -76,6 +74,9 @@
     <option value="2">02</option>
   </select>
 </div>
+<input type="button" class="button" value="Submit" style="float: right;">
+
+<!-- <a href="#" class="button">Link Button</a> -->
 
 <script>
 var x, i, j, l, ll, selElmnt, a, b, c;
