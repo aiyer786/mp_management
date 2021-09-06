@@ -1,7 +1,7 @@
 <?php 
  include('Connect.php');
  include('index_back.php');
- include_once('navbar1.html');
+ include_once('navbar_coor.html');
 ?>
 
 <!DOCTYPE html>

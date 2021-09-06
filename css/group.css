@@ -69,12 +69,12 @@
 }
 .dropbtn {
   background-color: rgb(158,29,51);
-  
+  color: whitesmoke;
   padding: 16px;
   font-size: 16px;
   border: none;
   width: 500px;
-  height: 50px;
+  height: 55px;
   border-radius: 5px;
   text-align-last: center;
 }
@@ -376,10 +376,11 @@ img{
   .custom-select {
     padding-left: 20%;
     width: 300px;
+
   }
   .dropbtn {
     background-color: rgb(158,29,51);
-    
+    color: white;
     padding: 16px;
     font-size: 16px;
     border: none;

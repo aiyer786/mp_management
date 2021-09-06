@@ -1,7 +1,7 @@
 <?php 
  include('Connect.php');
  include('index_back.php');
-require_once "navbar1.html";
+require_once "navbar_coor.html";
 $leader_id = $_GET['leader'];
 ?>
 <!DOCTYPE html>

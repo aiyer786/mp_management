@@ -1,7 +1,7 @@
 <?php 
 include('Connect.php');
 include('index_back.php');
-require_once('navbar1.html');
+require_once('navbar_coor.html');
 $division = $_GET['division']
 ?>
 <!DOCTYPE html>
@@ -77,8 +77,7 @@ $division = $_GET['division']
                    
 <form method = "post">
                 <select class="dropbtn" name="leader_name">
-                <i class="fa fa-caret-down" , style="color: white;"></i>
-                    <option style='background-color:#f5f5f5' style='color:white' value="student"><b>Select Group</option>
+                    <option style='background-color:#3c3f44'  value="student"><b>Select Group</option>
                     <?php      
                     $i=1;      
                     $res1 = mysqli_query($Connect, " SELECT * FROM `groups` WHERE `division` = '$division' AND `leader` = '1'  ");
@@ -95,7 +94,7 @@ $division = $_GET['division']
                        $Full_name=" {$F_name} {$M_name} {$L_name} ";
                        $roll_no = $row2['roll_no'];
                        $batch = $row2['batch']; ?>
-                    <option style='background-color:#f5f5f5' style='color:white' value="<?php echo $s_id ?>"><?php echo $Full_name ?></option>
+                    <option style='background-color:#3c3f44' style='color:white' value="<?php echo $s_id ?>"><?php echo $Full_name ?></option>
                     <?php
                    $i++;}}?>
                 </select>

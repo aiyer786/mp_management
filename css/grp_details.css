@@ -17,7 +17,7 @@ body{
     height: 50px;
     border-radius: 1px;
     text-align-last: center;
-    justify-content: centers;
+    justify-content: center;
   }
   
   .button {

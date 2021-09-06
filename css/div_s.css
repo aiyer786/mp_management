@@ -234,6 +234,8 @@ img{
   body{
     margin: 0;
   }
+ 
+  ]
   .btn{
     align-items: center;
   }
@@ -277,7 +279,9 @@ img{
 }
 
 @media screen and (min-width: 1024px){
-
+  .l-main{
+    padding-left: 10%;
+  }
   .bd-grid{
     margin-left: auto;
     margin-right: auto;
@@ -300,4 +304,18 @@ img{
 
 .label{
   font-size: 20px;
+}
+@media screen and (max-width: 768px){
+.l-main{
+  padding-left: 20%;
+}
+}
+@media screen and (max-width : 320px) {
+  .home__img{
+    display: none;
+  }
+  .btn{
+    
+    margin-left: 0;
+  }
 }
