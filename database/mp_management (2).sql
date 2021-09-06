@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 09, 2021 at 03:05 PM
+-- Generation Time: Sep 06, 2021 at 08:09 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -78,11 +78,11 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`sr_no`, `g_id`, `s_id`, `Leader`, `dept`, `division`) VALUES
-(240, '610b896824c27', 'DYCS0026', 1, 'CS', 'C'),
-(242, '610b896824c27', 'DYCS0027', 0, 'CS', 'C'),
 (245, '610ba45ee59c1', 'DYCS0029', 1, 'CS', 'C'),
 (246, '610ba45ee59c1', 'DYCS0030', 0, 'CS', 'C'),
-(247, '610ba45ee59c1', 'DYCS0028', 0, 'CS', 'C');
+(252, '611402f240e05', 'DYCS0026', 1, 'CS', 'C'),
+(253, '611402f240e05', 'DYCS0028', 0, 'CS', 'C'),
+(254, '611402f240e05', 'DYCS0027', 0, 'CS', 'C');
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ CREATE TABLE `mentor` (
   `email` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
   `contact` bigint(10) NOT NULL,
-  `count` int(1) DEFAULT NULL
+  `count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -137,10 +137,10 @@ INSERT INTO `mentor` (`sr_no`, `m_id`, `dept`, `F_name`, `M_name`, `L_name`, `em
 (2, 'DYET0007', 'IT', 'Kshitija', 'ars', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 1234567890, 0),
 (3, '124', 'Comps', 'Mohammad', 'Bashir', 'Khan', 'mohmadd@bashirkhan', 'dypatil@456', 1234567891, 0),
 (4, '125', 'EXTC', 'Tughlaq', 'Rumani', 'Shah', 'rumani@hojaye', 'dypatil@456', 2342342345, 0),
-(5, 'DYET0007', 'IT', 'Kshitija', 'fsdfa', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 1234567897654, NULL),
-(6, 'DY0006', 'CS', 'jnssnj', 'dxnwj', 'dwws', 'whns', 'dypatil@456', 0, NULL),
-(7, 'DYET0007', 'ET', 'Kshitija', 'dqwfe', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 23456789, NULL),
-(8, 'DYCS0008', 'CS', 'ADITYA', 'SAMBASIVAN', 'IYER', 'aiyer786@gmail.com', 'dypatil@456', 0, NULL);
+(5, 'DYET0007', 'IT', 'Kshitija', 'fsdfa', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 1234567897654, 0),
+(6, 'DY0006', 'CS', 'jnssnj', 'dxnwj', 'dwws', 'whns', 'dypatil@456', 0, 0),
+(7, 'DYET0007', 'ET', 'Kshitija', 'dqwfe', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 23456789, 0),
+(8, 'DYCS0008', 'CS', 'ADITYA', 'SAMBASIVAN', 'IYER', 'aiyer786@gmail.com', 'dypatil@456', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -157,6 +157,13 @@ CREATE TABLE `projects` (
   `active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`g_id`, `topic_id`, `topic`, `leader`, `mentor`, `active`) VALUES
+('610ba45ee59c1', '6135a2c3e0573', 'topic1', 'DYCS0029', 'DYCS0008', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -172,6 +179,16 @@ CREATE TABLE `project_suggestions` (
   `approved` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `project_suggestions`
+--
+
+INSERT INTO `project_suggestions` (`sr_no`, `g_id`, `topic_id`, `topic`, `description`, `approved`, `status`) VALUES
+(48, '611402f240e05', '611403a1990a7', 'dwhdujdh', 'wsahsujhwnsj', 0, 0),
+(49, '610ba45ee59c1', '6135a2c3e0573', 'topic1', 'something topic1', 1, 1),
+(50, '610ba45ee59c1', '6135a2cf7caa3', 'topic 2', 'something topic 2', 2, 0),
+(51, '610ba45ee59c1', '6135a2d92a711', 'topic3', 'something topic 3', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -266,7 +283,7 @@ ALTER TABLE `coordinator`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- AUTO_INCREMENT for table `hod`
@@ -284,7 +301,7 @@ ALTER TABLE `mentor`
 -- AUTO_INCREMENT for table `project_suggestions`
 --
 ALTER TABLE `project_suggestions`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `student`
