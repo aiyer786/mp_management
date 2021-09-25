@@ -2,7 +2,8 @@
 include('Connect.php');
 include('index_back.php');
 require_once('navbar_coor.html');
-$division = $_GET['division']
+$division = $_GET['division'];
+$dept = $_SESSION['dept'];
 ?>
 <!DOCTYPE html>
 
@@ -85,7 +86,7 @@ $division = $_GET['division']
                while ($row1=mysqli_fetch_array($res1)) {
                    $s_id=$row1['s_id'];
                   
-                   $res2 = mysqli_query($Connect, " SELECT * FROM `student` WHERE  `s_id`='$s_id' ");
+                   $res2 = mysqli_query($Connect, " SELECT * FROM `student` WHERE  `s_id`='$s_id' AND `dept` = '$dept' ");
                    while ($row2=mysqli_fetch_array($res2)) {
 
                        $F_name = $row2['F_name'];
@@ -103,10 +104,19 @@ $division = $_GET['division']
 <button name="submit"  class="button"  style="float: right;">Submit</button>
                    </form>
                    <?php 
+                    
     if(isset($_POST['submit'])){
-      $leader_name = $_POST['leader_name'];
+        $leader_name = $_POST['leader_name'];
+        $m_id = $_SESSION['m_id'];
+        $c_id = $_SESSION['c_id'];
       if ($leader_name != 'student') {
+          if($c_id == true){
         echo("<script>window.location = 'grp_details.php?leader=$leader_name & division=$division'</script>");
+          }
+          if($m_id == true){
+            echo("<script>window.location = 'grp_details_men.php?leader=$leader_name & division=$division'</script>");
+
+          }
       }
       else{
         echo'<label style="color: red;">Please Select a Group Leader</label>';
