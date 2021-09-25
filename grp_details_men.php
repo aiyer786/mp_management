@@ -111,7 +111,7 @@ $n=1;
            <tr>
                <th>Topic Name</th>
                <th>Description</th>
-               <th>Status</th>
+               <th>Action</th>
                <!-- <th>Action</th> -->
            </tr>
        </thead>
