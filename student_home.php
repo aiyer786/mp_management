@@ -1,104 +1,48 @@
 <?php 
 include('Connect.php');
-include('index_back.php')
+include('index_back.php');
+include('navbar_student.html');
+@$s_id = $_SESSION['s_id'] or die("SESSION Expired !! Login Again");
+$query = mysqli_query($Connect, "SELECT * FROM `student` WHERE `s_id`='$s_id'");
+$row = mysqli_fetch_assoc($query);
+  $F_name = $row['F_name'];
+  $L_name = $row['L_name'];
+  $Full_name=" {$F_name} {$L_name} "; 
+  $roll_no = $row['roll_no'];
+  $dept = $row['dept'];
+  $year = $row['year'];
+  $div = $row['division'];
+  $batch = $row['batch'];
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="apple-touch-icon" type="image/png"
-      href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
-    <link rel="shortcut icon" type="image/x-icon"
-      href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
-    <link rel="mask-icon" type=""
-      href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
-      color="#111" />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.6/tailwind.min.css'>
-    
-
-    
-    <!-- Boxicons CDN Link -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="css/student.css">
+     <link rel="stylesheet" href="css/profile.css">
    </head>
 <body>
-  <div class="sidebar">
-    <div class="logo-details">
-      
-      <!--<i class='bx bxl-c-plus-plus icon'></i>>-->
-        <div class="logo_name">
-          <div class="imge"><img class="img" src="images/dylogo.png" alt="" srcset=""></div>
-          <div class="name">D Y PATIL</div>
-        </div>
-        <i class='bx bx-menu' id="btn" ></i>
-    </div>
-    <ul class="nav-list">
-     
-      <li>
-        <a href="student_home.php">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Home</span>
-        </a>
-         <span class="tooltip">Home</span>
-      </li>
-      <li>
-      <a href="stu_details.php">
-         <i class='bx bxs-id-card' ></i>
-         <span class="links_name">Student Details</span>
-       </a>
-       <span class="tooltip"> Student Details</span>
-     </li>
-     <li>
-       <a href="addmemb.php">
-         <i class='bx bx-user-plus' ></i>
-         <span class="links_name">Add Member</span>
-       </a>
-       <span class="tooltip">Add Member</span>
-     </li>
-     <li>
-       <a href="project_suggest.php">
-         <i class='bx bx-bulb' ></i>
-         <span class="links_name">Suggest Topic</span>
-       </a>
-       <span class="tooltip">Suggest Topic</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-user' ></i>
-         <span class="links_name">Mentor</span>
-       </a>
-       <span class="tooltip">Mentor</span>
-       </li>
-       <li>
-       <a href="logout.php">
-         <i class='bx bx-exit' ></i>
-         <span class="links_name">Logout</span>
-       </a>
-       <span class="tooltip">Logout</span>
-       </li>
-    </ul>
+<div id="biography" class="container">
+<div >
+  <h1 class="display-4">Hello , <?php echo $Full_name?> !!!</h1>
+  <br><br>
+  <div class="details">
+  <h3> <b>Student ID : </b><?php echo $s_id?></h3>
+  <br>
+  <h3><b>Roll No : </b><?php echo $roll_no?></h3>
+  <br>
+  <h3><b> Department : </b><?php echo $dept?> </h3>
+  <br>
+  <h3> <b>Year : </b><?php echo $year?></h3>
+  <br>
+  <h3> <b>Division : </b> <?php echo $div?></h3>
+  <br>
+  <h3> <b>Batch : </b><?php echo $batch?></h3>
+  <br>
   </div>
-  <section class="home-section">
-      <div class="text" >Home</div>
-      <div class="mb-3">
-        <label for="formFile" class="form-label">Upload File</label>
-        <input class="form-control" type="file" id="formFile"><br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-        
-  </section>
+</div>
   <script src="js/student.js"></script>
   
 </body>

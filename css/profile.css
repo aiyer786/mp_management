@@ -1,0 +1,28 @@
+body {
+	padding-top: 3%;
+}
+.container{
+    background-color: rgb(211, 130, 130);
+    width: 1000px;
+    border-radius: 20px;
+}
+.details{
+    padding-left: 50px;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        padding-left: 20%;
+        padding-right: 10%;
+        padding-top: 10%;
+    }
+    .container{
+
+        width: 200px;
+        border-radius: 20px;
+    }
+    .details{
+        padding-left: -50px;
+    }
+    
+}

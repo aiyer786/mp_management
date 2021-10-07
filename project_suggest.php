@@ -1,6 +1,7 @@
 <?php 
 include('Connect.php');
-include('index_back.php')
+include('index_back.php');
+include('navbar_student.html');
 ?>
 
 
@@ -41,55 +42,6 @@ include('index_back.php')
      <link rel="stylesheet" href="css/suggesttable.css">
    </head>
 <body>
-  <div class="sidebar">
-    <div class="logo-details">
-     
-      <!--<i class='bx bxl-c-plus-plus icon'></i>>-->
-      <div class="logo_name">
-        <div class="imge"><img class="img" src="images/dylogo.png" alt="" srcset=""></div>
-        <div class="name">D Y PATIL</div>
-      </div>
-        <i class='bx bx-menu' id="btn" ></i>
-    </div>
-    <ul class="nav-list">
-     
-      <li>
-        <a href="student_home.php">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Home</span>
-        </a>
-         <span class="tooltip">Home</span>
-      </li>
-      <li>
-       <a href="addmemb.php">
-         <i class='bx bx-user-plus' ></i>
-         <span class="links_name">Add Member</span>
-       </a>
-       <span class="tooltip">Add Member</span>
-     </li>
-     <li>
-       <a href="project_suggest.php">
-         <i class='bx bx-bulb' ></i>
-         <span class="links_name">Suggest Topic</span>
-       </a>
-       <span class="tooltip">Suggest Topic</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-user' ></i>
-         <span class="links_name">Mentor</span>
-       </a>
-       <span class="tooltip">Mentor</span>
-       </li>
-       <li>
-       <a href="logout.php">
-         <i class='bx bx-exit' ></i>
-         <span class="links_name">Logout</span>
-       </a>
-       <span class="tooltip">Logout</span>
-       </li>
-    </ul>
-  </div>
   <section class="home-section">
       <div class="text">Suggest Topic</div>
       <div class="suggestion">

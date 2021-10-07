@@ -1,4 +1,7 @@
-
+<?php 
+include('Connect.php');
+include('index_back.php')
+?>
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -52,13 +55,12 @@
       </li>
       <li>
       <a href="stu_details.php">
-        <i class='bx bxs-id-card' ></i>
-        <span class="links_name">Student Details</span>
-      </a>
-      <span class="tooltip">Student Details</span>
-    </li>
-       
-      <li>
+         <i class='bx bxs-id-card' ></i>
+         <span class="links_name">Student Details</span>
+       </a>
+       <span class="tooltip"> Student Details</span>
+     </li>
+     <li>
        <a href="addmemb.php">
          <i class='bx bx-user-plus' ></i>
          <span class="links_name">Add Member</span>
@@ -72,13 +74,6 @@
        </a>
        <span class="tooltip">Suggest Topic</span>
      </li>
-     <li>
-      <a href="submission.php">
-        <i class='bx bxs-cloud-upload' ></i>
-        <span class="links_name">Submissions</span>
-      </a>
-      <span class="tooltip">Submissions</span>
-      </li>
      <li>
        <a href="#">
          <i class='bx bx-user' ></i>
@@ -95,6 +90,16 @@
        </li>
     </ul>
   </div>
+  <section class="home-section">
+      <div class="text" >Home</div>
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Upload File</label>
+        <input class="form-control" type="file" id="formFile"><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+        
+  </section>
   <script src="js/student.js"></script>
+  
 </body>
 </html>
