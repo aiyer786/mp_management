@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 06, 2021 at 08:09 AM
+-- Generation Time: Oct 07, 2021 at 12:10 PM
 -- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.7
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,7 @@ CREATE TABLE `coordinator` (
 --
 
 INSERT INTO `coordinator` (`sr_no`, `c_id`, `dept`, `year`, `F_name`, `M_name`, `L_name`, `email`, `password`, `contact`) VALUES
-(7, 'DYCS0007', 'CS', '', 'Ball', 'palladium', 'Stadium', 'palladium@stadium.com', 'dypatil@456', 988908899);
+(7, 'DYCS0007', 'CS', '', 'M.S.', '', 'DHONI', 'palladium@stadium.com', 'dypatil@456', 988908899);
 
 -- --------------------------------------------------------
 
@@ -78,11 +78,10 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`sr_no`, `g_id`, `s_id`, `Leader`, `dept`, `division`) VALUES
-(245, '610ba45ee59c1', 'DYCS0029', 1, 'CS', 'C'),
-(246, '610ba45ee59c1', 'DYCS0030', 0, 'CS', 'C'),
-(252, '611402f240e05', 'DYCS0026', 1, 'CS', 'C'),
-(253, '611402f240e05', 'DYCS0028', 0, 'CS', 'C'),
-(254, '611402f240e05', 'DYCS0027', 0, 'CS', 'C');
+(276, '615eaae9bd3b8', 'DYCS0031', 1, 'CS', 'B'),
+(277, '615eaae9bd3b8', 'DYCS0032', 0, 'CS', 'B'),
+(278, '615eabdcf0972', 'DYCS0029', 1, 'CS', 'C'),
+(279, '615eabdcf0972', 'DYCS0030', 0, 'CS', 'C');
 
 -- --------------------------------------------------------
 
@@ -133,14 +132,8 @@ CREATE TABLE `mentor` (
 --
 
 INSERT INTO `mentor` (`sr_no`, `m_id`, `dept`, `F_name`, `M_name`, `L_name`, `email`, `password`, `contact`, `count`) VALUES
-(1, 'DYET0007', 'IT', 'Kshitija', 'esrtghjfh', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 23456765432, 0),
-(2, 'DYET0007', 'IT', 'Kshitija', 'ars', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 1234567890, 0),
-(3, '124', 'Comps', 'Mohammad', 'Bashir', 'Khan', 'mohmadd@bashirkhan', 'dypatil@456', 1234567891, 0),
-(4, '125', 'EXTC', 'Tughlaq', 'Rumani', 'Shah', 'rumani@hojaye', 'dypatil@456', 2342342345, 0),
-(5, 'DYET0007', 'IT', 'Kshitija', 'fsdfa', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 1234567897654, 0),
-(6, 'DY0006', 'CS', 'jnssnj', 'dxnwj', 'dwws', 'whns', 'dypatil@456', 0, 0),
-(7, 'DYET0007', 'ET', 'Kshitija', 'dqwfe', 'Bharambe', 'bharambekshitija2@gmail.com', 'dypatil@456', 23456789, 0),
-(8, 'DYCS0008', 'CS', 'ADITYA', 'SAMBASIVAN', 'IYER', 'aiyer786@gmail.com', 'dypatil@456', 0, 0);
+(3, '124', 'CS', 'Mohammad', 'Bashir', 'Khan', 'mohmadd@bashirkhan', 'dypatil@456', 1234567891, 0),
+(4, '125', 'EXTC', 'Tughlaq', 'Rumani', 'Shah', 'rumani@hojaye', 'dypatil@456', 2342342345, 0);
 
 -- --------------------------------------------------------
 
@@ -162,7 +155,7 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`g_id`, `topic_id`, `topic`, `leader`, `mentor`, `active`) VALUES
-('610ba45ee59c1', '6135a2c3e0573', 'topic1', 'DYCS0029', 'DYCS0008', 1);
+('615eabdcf0972', '615eac18377a0', 'topic 3', 'DYCS0029', '124', 1);
 
 -- --------------------------------------------------------
 
@@ -185,10 +178,9 @@ CREATE TABLE `project_suggestions` (
 --
 
 INSERT INTO `project_suggestions` (`sr_no`, `g_id`, `topic_id`, `topic`, `description`, `approved`, `status`) VALUES
-(48, '611402f240e05', '611403a1990a7', 'dwhdujdh', 'wsahsujhwnsj', 0, 0),
-(49, '610ba45ee59c1', '6135a2c3e0573', 'topic1', 'something topic1', 1, 1),
-(50, '610ba45ee59c1', '6135a2cf7caa3', 'topic 2', 'something topic 2', 2, 0),
-(51, '610ba45ee59c1', '6135a2d92a711', 'topic3', 'something topic 3', 2, 0);
+(57, '615eabdcf0972', '615eabf9c5174', 'topic 1', 'something related to topic 1', 2, 0),
+(58, '615eabdcf0972', '615eac0a15a46', 'topic 2', 'something related to topic 2', 2, 0),
+(59, '615eabdcf0972', '615eac18377a0', 'topic 3', 'something related to topic 3', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -218,13 +210,13 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`sr_no`, `s_id`, `dept`, `roll_no`, `F_name`, `M_name`, `L_name`, `email`, `password`, `contact`, `year`, `division`, `batch`, `active`) VALUES
-(26, 'DYCS0026', 'CS', '19CE7013', 'ADITYA', 'SAMBASIVAN', 'IYER', 'aiyer786@gmail.com', 'dypatil@123', 90882765456, 'TE', 'C', 'C1', 1),
-(27, 'DYCS0027', 'CS', '19CE7014', 'Kshitija ', 'Shashank ', 'Bharambe', 'bharambekshitija@gmail.com', 'dypatil@123', 87876554321, 'TE', 'C', 'C1', 1),
-(28, 'DYCS0028', 'CS', '19CE7015', 'Omkar', 'Datta', 'Ukirde', 'ukirdeomkar4@gmail.com', 'dypatil@123', 766578763457, 'TE', 'C', 'C1', 1),
+(26, 'DYCS0026', 'CS', '19CE7013', 'ADITYA', 'SAMBASIVAN', 'IYER', 'aiyer786@gmail.com', 'dypatil@123', 90882765456, 'TE', 'C', 'C1', 0),
+(27, 'DYCS0027', 'CS', '19CE7014', 'Kshitija ', 'Shashank ', 'Bharambe', 'bharambekshitija@gmail.com', 'dypatil@123', 87876554321, 'TE', 'C', 'C1', 0),
+(28, 'DYCS0028', 'CS', '19CE7015', 'Omkar', 'Datta', 'Ukirde', 'ukirdeomkar4@gmail.com', 'dypatil@123', 766578763457, 'TE', 'C', 'C1', 0),
 (29, 'DYCS0029', 'CS', '19CE7016', 'Jay', 'Middlename', 'Doshi', 'middlename@gmail.com', 'dypatil@123', 12345676545677, 'TE', 'C', 'C1', 1),
 (30, 'DYCS0030', 'CS', '19CE7017', 'Amol', 'Kamlakar', 'Palekar', 'chhotisi@baat', 'dypatil@123', 4567654334567, 'TE', 'C', 'C1', 1),
-(31, 'DYCS0031', 'CS', '19CE8013', 'Akshay ', 'Khiladi', 'Kumar', 'khiladi786@kumar.com', 'dypatil@123', 786786786786, 'TE', 'B', 'b1', 0),
-(32, 'DYCS0032', 'CS', '19CE8014', 'Shahrukh', 'Taj', 'Khan', 'badshah@bollywood.com', 'dypatil@123', 45678945623, 'TE', 'B', 'B3', 0),
+(31, 'DYCS0031', 'CS', '19CE8013', 'Akshay ', 'Khiladi', 'Kumar', 'khiladi786@kumar.com', 'dypatil@123', 786786786786, 'TE', 'B', 'b1', 1),
+(32, 'DYCS0032', 'CS', '19CE8014', 'Shahrukh', 'Taj', 'Khan', 'badshah@bollywood.com', 'dypatil@123', 45678945623, 'TE', 'B', 'B3', 1),
 (33, 'DYCS0033', 'CS', '19CE8015', 'Irrfan', 'Yaseen Ali', 'Khan', 'greatest@actor.com', 'dypatil@123', 9082946276, 'TE', 'B', 'B3', 0),
 (36, 'DYCS0036', 'CS', '19CE8017', 'Tom', 'Thomas', 'Cruise', 'knight@day', 'dypatil@123', 70070070, 'TE', 'B', 'B4', 0),
 (39, 'DYCS0039', 'CS', '19ce1345', 'anna', 'Ken', 'Kendrik', 'anna@gmail.com', 'dypatil@123', 1234567890, 'TE', 'A', 'a1', 0);
@@ -283,7 +275,7 @@ ALTER TABLE `coordinator`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=287;
 
 --
 -- AUTO_INCREMENT for table `hod`
@@ -301,7 +293,7 @@ ALTER TABLE `mentor`
 -- AUTO_INCREMENT for table `project_suggestions`
 --
 ALTER TABLE `project_suggestions`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `student`
