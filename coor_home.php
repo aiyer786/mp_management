@@ -8,22 +8,32 @@ $query = mysqli_query($Connect, "SELECT * FROM `coordinator` WHERE `c_id`='$c_id
 $row = mysqli_fetch_assoc($query);
   $F_name = $row['F_name'];
   $L_name = $row['L_name'];
+  $dept = $row['dept'];
   $Full_name=" {$F_name} {$L_name} "; 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-
-  <link rel="stylesheet" href="css/navbar1.css">
-  <link rel="stylesheet" href="css/coor_home.css">
+  <link rel="stylesheet" href="./css/profile.css">
  <title>Co-or Home</title>
 </head>
 <body>
-<div class="flex">
+<div id="biography" class="container">
+<div >
   <h1 class="display-4">Hello , <?php echo $Full_name?> !!!</h1>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="div_select.php" role="button">View Projects</a>
-  </p>
+  <br><br>
+  <div class="details">
+  <h3> <b>Co-Ordinator ID : </b><?php echo $c_id?></h3>
+  <br>
+  <h3><b> Department : </b><?php echo $dept?> </h3>
+  <br>
+  </div>
+  <a class="btn btn-primary btn-lg" href="div_select.php" role="button">View Projects</a>
 </div>
+
+</div>
+
+    
+  
 </body>
 </html>

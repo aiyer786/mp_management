@@ -46,7 +46,7 @@ table {
   
   @media screen and (max-width: 600px) {
     .container {
-        padding-left: 20%;
+        padding-left: 3%;
         padding-right: 10%;
         padding-top: 5%;
     }

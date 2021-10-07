@@ -2,6 +2,7 @@
 include('Connect.php');
 include('index_back.php');
 include('navbar_student.html');
+@$student = $_SESSION['s_id'] or die("Session Expired !! Login Again");
 ?>
 <html>
 <head>

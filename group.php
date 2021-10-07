@@ -4,6 +4,8 @@ include('index_back.php');
 require_once('navbar_coor.html');
 $division = $_GET['division'];
 $dept = $_SESSION['dept'];
+$m_id = $_SESSION['m_id'];
+$c_id = $_SESSION['c_id'];
 ?>
 <!DOCTYPE html>
 
@@ -77,6 +79,7 @@ $dept = $_SESSION['dept'];
 
                    
 <form method = "post">
+   <?php  if($c_id == true){?>
                 <select class="dropbtn" name="leader_name">
                     <option style='background-color:#3c3f44'  value="student"><b>Select Group</option>
                     <?php      
@@ -96,10 +99,39 @@ $dept = $_SESSION['dept'];
                        $roll_no = $row2['roll_no'];
                        $batch = $row2['batch']; ?>
                     <option style='background-color:#3c3f44' style='color:white' value="<?php echo $s_id ?>"><?php echo $Full_name ?></option>
+                    
                     <?php
                    $i++;}}?>
                 </select>
+                    <?php } ?>
+                <?php  if($m_id == true){?>
+                <select class="dropbtn" name="leader_name">
+                    <option style='background-color:#3c3f44'  value="student"><b>Select Group</option>
+                    <?php      
+                    $i=1;      
+                    $res5 = mysqli_query($Connect, " SELECT * FROM `projects` WHERE `active` = '1' AND `mentor` = '$m_id'");
+                    while ($row5=mysqli_fetch_array($res5)) {
+                        $g_id = $row5['g_id'];
+                    $res4 = mysqli_query($Connect, " SELECT * FROM `groups` WHERE `g_id`= '$g_id' AND `division` = '$division' AND `leader` = '1'  ");
                
+               while ($row1=mysqli_fetch_array($res4)) {
+                   $s_id=$row1['s_id'];
+                  
+                   $res2 = mysqli_query($Connect, " SELECT * FROM `student` WHERE  `s_id`='$s_id' AND `dept` = '$dept' ");
+                   while ($row2=mysqli_fetch_array($res2)) {
+
+                       $F_name = $row2['F_name'];
+                       $M_name = $row2['M_name'];
+                       $L_name = $row2['L_name'];
+                       $Full_name=" {$F_name} {$M_name} {$L_name} ";
+                       $roll_no = $row2['roll_no'];
+                       $batch = $row2['batch']; ?>
+                    <option style='background-color:#3c3f44' style='color:white' value="<?php echo $s_id ?>"><?php echo $Full_name ?></option>
+                    
+                    <?php
+                   $i++;}}}?>
+                </select>
+               <?php } ?>
 </div>
 <button name="submit"  class="button"  style="float: right;">Submit</button>
                    </form>

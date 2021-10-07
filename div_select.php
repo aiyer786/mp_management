@@ -62,7 +62,14 @@
                             
                             <label for="exampleFormControlInput1" class="form-label">Division:</label>
                             <form method="POST" action="div_select_back.php">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="division" style="text-transform:uppercase"> </input>
+                            <!-- <input type="text" class="form-control" id="exampleFormControlInput1" name="division" style="text-transform:uppercase"> </input> -->
+                            <select name="division" id="exampleFormControlInput1" class="form-select">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            </select>
                             <button type="submit" class="btn btn-danger" name="div_submit">Submit</button>
                             </form>
                           </div>

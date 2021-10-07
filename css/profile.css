@@ -9,7 +9,9 @@ body {
 .details{
     padding-left: 50px;
 }
-
+.btn btn-danger btn-lg{
+    padding-left: 500px;
+}
 @media screen and (max-width: 600px) {
     body {
         padding-left: 20%;

@@ -30,7 +30,6 @@
         }
         
         elseif($login_type=='mentor'){
-            echo'I am ';
             $query = " SELECT * FROM `mentor` WHERE `email` = '$email' ";
             $res = mysqli_query($Connect, $query);
             $data = mysqli_fetch_assoc($res);
@@ -44,12 +43,11 @@
 
             } 
             else {
-                echo'wrong password';
+                echo("<script>alert('Wrong Email or Password!!')</script>");
             }
 
         }
         elseif($login_type=='hod'){
-            echo'I am ';
             $query = " SELECT * FROM `hod` WHERE `email` = '$email' ";
             $res = mysqli_query($Connect, $query);
             $data = mysqli_fetch_assoc($res);
@@ -59,7 +57,7 @@
                 echo $data['F_name'].$data['M_name'].$data['L_name'];
             } 
             else {
-                echo'wrong password';
+                echo("<script>alert('Wrong Email or Password!!')</script>");
             }
         }
         elseif($login_type=='co_or'){
@@ -74,7 +72,7 @@
                 echo("<script>window.location = 'coor_home.php'</script>");
             } 
             else {
-                echo'wrong password';
+                echo("<script>alert('Wrong Email or Password!!')</script>");
             }
         }
         else{

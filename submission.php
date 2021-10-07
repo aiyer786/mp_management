@@ -1,6 +1,7 @@
 <?php 
 include('Connect.php');
-include('index_back.php')
+include('index_back.php');
+@$student = $_SESSION['s_id'] or die("Session Expired !! Login Again");
 ?>
 <!DOCTYPE html>
 
